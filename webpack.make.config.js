@@ -14,7 +14,7 @@ module.exports = function(options) {
 
     var entry = {
         app:'./examples/entry.jsx'
-        //,css:'./app/entry-css.jsx'
+        ,css:'./src/styles/themes/paper/all.scss'
         //,common:[
         //    "react"
         //    ,"react-router"
