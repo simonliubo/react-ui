@@ -16,8 +16,6 @@ module.exports = {
 		<Route path="/" name="app" handler={App}>
 			<DefaultRoute handler={Home}/>
 			<Route path="home" name="home" handler={Home}/>
-			<Route path="s/:id" name="s" handler={Search}/>
-			<Route path="r/:id" name="r" handler={Result}/>
 		</Route>
 	)
 }

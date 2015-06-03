@@ -73,11 +73,11 @@ module.exports = function(options) {
             ,Flux: "flux"
             ,Classnames: "classnames"
         })
-        ,new webpack.ResolverPlugin([
-            new webpack.ResolverPlugin.DirectoryDescriptionFilePlugin("bower.json", ["main"])
-        ])
-        //,new webpack.optimize.LimitChunkCountPlugin({ maxChunks: 20 })
-        ,new webpack.optimize.CommonsChunkPlugin("common", "common.js" + (options.longTermCaching && !options.prerender ? "?[chunkhash]" : ""))
+        //,new webpack.ResolverPlugin([
+        //    new webpack.ResolverPlugin.DirectoryDescriptionFilePlugin("bower.json", ["main"])
+        //])
+        ////,new webpack.optimize.LimitChunkCountPlugin({ maxChunks: 20 })
+        //,new webpack.optimize.CommonsChunkPlugin("common", "common.js" + (options.longTermCaching && !options.prerender ? "?[chunkhash]" : ""))
     ];
 
     //压缩
