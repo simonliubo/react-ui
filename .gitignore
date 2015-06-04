@@ -3,3 +3,8 @@
 .DS_Store
 /node_modules/
 /.idea/
+/dist/
+/amd/
+/doc/
+/doc-build/
+/lib/

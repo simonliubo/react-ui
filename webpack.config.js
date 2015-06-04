@@ -1,6 +1,4 @@
-/**
-* Created by liubo on 15/3/11.
-*/
-module.exports = require("./webpack.make.config")({
-
-});
+/* eslint no-var: 0 */
+require('babel/register');
+var config = require('./webpack/webpack.config');
+module.exports = config;
