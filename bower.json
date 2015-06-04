@@ -1,0 +1,17 @@
+{
+    "name": "webapp-ui",
+    "description": "",
+    "version": "",
+    "author": "liubo",
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/thomaspark/bootswatch.git"
+    },
+    "license": "MIT",
+    "dependencies": {
+        "bootstrap": "~3.3.4"
+    },
+    "devDependencies": {
+        "bootstrap-sass-official": "~3.3.4"
+    }
+}

@@ -9,3 +9,4 @@
 /docs-built/
 /.babel-cache/
 /lib/
+/examples/scripts/vendor/
