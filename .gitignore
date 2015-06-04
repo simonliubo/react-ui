@@ -5,6 +5,7 @@
 /.idea/
 /dist/
 /amd/
+/doc/
 /docs-built/
 /.babel-cache/
 /lib/

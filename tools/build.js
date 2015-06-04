@@ -19,8 +19,8 @@ export default function Build(verbose) {
   return Promise.all([
       lib(),
       bower(),
-      dist(),
-      forkAndBuildDocs(verbose)
+      dist()
+      //forkAndBuildDocs(verbose)
     ])
     .then(() => copy(distRoot, bowerRoot));
 }
