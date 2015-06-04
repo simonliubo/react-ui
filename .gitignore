@@ -6,5 +6,6 @@
 /dist/
 /amd/
 /doc/
-/doc-build/
+/doc-built/
+/.babel-cache/
 /lib/
