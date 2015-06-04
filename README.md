@@ -2,21 +2,6 @@
 
 [Bootstrap 3][bootstrap] components built with [React][react]
 
-[![Travis Build Status][build-badge]][build]
-[![Build status][appveyor-badge]][appveyor]
-
-[![HuBoard][huboard-badge]][huboard]
-[![Gitter][gitter-badge]][gitter]
-
-[![NPM version][npm-badge]][npm]
-[![Bower version][bower-badge]][bower]
-
-[![Dependency Status][deps-badge]][deps]
-[![devDependency Status][dev-deps-badge]][dev-deps]
-[![peerDependency Status][peer-deps-badge]][peer-deps]
-
-__Under active development - APIs will change.__ Check out the [1.0.0 Roadmap](https://github.com/react-bootstrap/react-bootstrap/wiki#100-roadmap) and [Contributing Guidelines][contributing] to see where you can help out. Prior to the 1.0.0 release, breaking changes should result in a Minor version bump.
-
 ## Docs
 
 See the [documentation][documentation] with live editable examples.
