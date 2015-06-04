@@ -34,7 +34,7 @@
     "react-component",
     "bootstrap"
   ],
-  "author": "Stephen J. Collings <stevoland@gmail.com>",
+  "author": "beisen-liubo",
   "license": "MIT",
   "peerDependencies": {
     "react": ">=0.13"
