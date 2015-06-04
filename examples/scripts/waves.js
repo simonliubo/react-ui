@@ -35,7 +35,7 @@ function convertStyle(obj) {
 
     return style;
 }
-TouchHandler = {
+var TouchHandler = {
     /* uses an integer rather than bool so there's no issues with
      * needing to clear timeouts if another touch event occurred
      * within the 500ms. Cannot mouseup between touchstart and

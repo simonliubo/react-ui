@@ -10,7 +10,6 @@ var appRoot = path.join(__dirname, './examples');
 var bowerRoot = path.join(__dirname, './examples/scripts/vendor');
 var nodeRoot = path.join(__dirname, './node_modules');
 
-
 module.exports = function(options) {
 
     var entry = {
@@ -32,14 +31,13 @@ module.exports = function(options) {
     // 凡是遇到jsx结尾的，都用jsx-loader这个插件来加载，
     // 且启用harmony模式
     var loaders = [
-        { test: /\.jsx?$/, loaders: ['jsx-loader?harmony'] }
+        { test: /\.jsx?$/, loaders: ["babel-loader?stage=0"], include: [path.join(__dirname, "examples"), path.join(__dirname, "src")] }
         ,{ test: /\.css$/, loader: 'style-loader!css-loader' }
         ,{ test: /\.scss$/, loader: 'style!css!sass' } // use ! to chain loaders
-        //,{ test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "url-loader?limit=10000&minetype=application/font-woff" }
         ,{ test: /\.(ttf|eot|svg|woff|woff2)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "file-loader" }
-        //,{test: /\.png$/, loader: "url-loader?mimetype=image/png"}
-        //,{test: /\.gif$/, loader: "url-loader?mimetype=image/gif"}
-        //,{test: /\.jpe?g$/, loader: "url-loader?mimetype=image/jpeg"}
+        ,{test: /\.png$/, loader: "url-loader?mimetype=image/png"}
+        ,{test: /\.gif$/, loader: "url-loader?mimetype=image/gif"}
+        ,{test: /\.jpe?g$/, loader: "url-loader?mimetype=image/jpeg"}
     ];
 
 
@@ -72,6 +70,7 @@ module.exports = function(options) {
             ,keyMirror: "keymirror"
             ,Flux: "flux"
             ,Classnames: "classnames"
+            ,ReactBootstrap: "../../../../src/index"
         })
         //,new webpack.ResolverPlugin([
         //    new webpack.ResolverPlugin.DirectoryDescriptionFilePlugin("bower.json", ["main"])
