@@ -5,8 +5,6 @@ var Waves = require('../../waves');
 var Button = ReactBootstrap.Button;
 var ButtonToolbar = ReactBootstrap.ButtonToolbar;
 
-
-
 var App = React.createClass({
     mixins: [ Waves ]
     ,render: function() {
