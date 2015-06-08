@@ -1,7 +1,7 @@
 /**
  * Created by liubo on 15/3/12.
  */
-var Waves = require('../../waves');
+var Waves = require('../../mixins/waves');
 var Button = ReactBootstrap.Button;
 var ButtonToolbar = ReactBootstrap.ButtonToolbar;
 
