@@ -88,7 +88,7 @@ var App = React.createClass({
                         <ListGroup fill>
                             <ListGroupItem>
                                 <ButtonToolbar>
-                                    <Button bsSize='large'>Default Button</Button>
+                                    <Button bsSize='large'>Large Button</Button>
                                     <Button bsStyle='primary' bsSize='large'>large Button</Button>
                                 </ButtonToolbar>
 
@@ -98,24 +98,82 @@ var App = React.createClass({
                                 </ButtonToolbar>
 
                                 <ButtonToolbar>
-                                    <Button bsSize='small'>Default Button</Button>
-                                    <Button bsStyle='primary' bsSize='small'>Default Button</Button>
+                                    <Button bsSize='small'>Small Button</Button>
+                                    <Button bsStyle='primary' bsSize='small'>Small Button</Button>
                                 </ButtonToolbar>
 
                                 <ButtonToolbar>
-                                    <Button bsSize='xsmall'>Default Button</Button>
-                                    <Button bsStyle='primary' bsSize='xsmall'>Default Button</Button>
+                                    <Button bsSize='xsmall'>Xsmall Button</Button>
+                                    <Button bsStyle='primary' bsSize='xsmall'>Xsmall Button</Button>
                                 </ButtonToolbar>
 
                             </ListGroupItem>
                             <ListGroupItem>
-                                通过添加bsSize属性设置按钮尺寸;预定义的尺寸有：bsSize="large", bsSize="small", or bsSize="xsmall"
+                                通过添加bsSize属性设置按钮尺寸;预定义的尺寸有：<code>bsSize="large", bsSize="small", or bsSize="xsmall"</code>
                             </ListGroupItem>
                             <ListGroupItem>
                                 如果你想在一行输出多个内联按钮，它们应该放在<code>&lt;ButtonToolbar&gt;</code>组件之中
                             </ListGroupItem>
                         </ListGroup>
                     </Panel>
+
+
+                    <Panel collapsible defaultExpanded header='块级按钮' bsStyle='info'>
+                        <ListGroup fill>
+                            <ListGroupItem>
+                                <ButtonToolbar>
+                                    <Button bsSize='large' block>Large Button</Button>
+                                    <Button bsStyle='primary' bsSize='large' block>Large Button</Button>
+                                </ButtonToolbar>
+                            </ListGroupItem>
+                            <ListGroupItem>
+                                添加一个<code>block</code>属性来设置当前按钮为块级元素，按钮宽度自适应父级元素宽度
+                            </ListGroupItem>
+                        </ListGroup>
+                    </Panel>
+
+                    <Panel collapsible defaultExpanded header='激活状态' bsStyle='info'>
+                        <ListGroup fill>
+                            <ListGroupItem>
+                                <ButtonToolbar>
+                                    <Button bsSize='large' active>Large Button</Button>
+                                    <Button bsStyle='primary' bsSize='large' active>Large Button</Button>
+                                </ButtonToolbar>
+                            </ListGroupItem>
+                            <ListGroupItem>
+                                添加一个<code>active</code>属性来设置当前按钮的激活状态
+                            </ListGroupItem>
+                        </ListGroup>
+                    </Panel>
+
+                    <Panel collapsible defaultExpanded header='禁用状态' bsStyle='info'>
+                        <ListGroup fill>
+                            <ListGroupItem>
+                                <ButtonToolbar>
+                                    <Button bsSize='large' disabled>Large Button</Button>
+                                    <Button bsStyle='primary' bsSize='large' disabled>Large Button</Button>
+                                </ButtonToolbar>
+                            </ListGroupItem>
+                            <ListGroupItem>
+                                添加一个<code>disabled</code>属性来设置当前按钮的禁用状态，注意这个属性只在按钮展示时产生效果，并不对事件产生影响，如onclick事件等
+                            </ListGroupItem>
+                        </ListGroup>
+                    </Panel>
+
+                    <Panel collapsible defaultExpanded header='按钮标签' bsStyle='info'>
+                        <ListGroup fill>
+                            <ListGroupItem>
+                                <ButtonToolbar>
+                                    <Button href='#'>Link</Button>
+                                    <Button>Button</Button>
+                                </ButtonToolbar>
+                            </ListGroupItem>
+                            <ListGroupItem>
+                                组件会根据你设置的属性自动生成标签元素，如果你设置了<code>href</code>属性，将会生成<code>&lt;a&gt;</code>标签，否则生成<code>&lt;button&gt;</code>标签
+                            </ListGroupItem>
+                        </ListGroup>
+                    </Panel>
+
                 </div>
                 <div className="col-xs-6 col-md-4">
 

@@ -2,6 +2,7 @@ import React, { cloneElement } from 'react';
 import classNames from 'classnames';
 import BootstrapMixin from './BootstrapMixin';
 import ValidComponentChildren from './utils/ValidComponentChildren';
+import Glyphicon from './Glyphicon';
 
 const Carousel = React.createClass({
   mixins: [BootstrapMixin],
@@ -17,7 +18,9 @@ const Carousel = React.createClass({
     onSlideEnd: React.PropTypes.func,
     activeIndex: React.PropTypes.number,
     defaultActiveIndex: React.PropTypes.number,
-    direction: React.PropTypes.oneOf(['prev', 'next'])
+    direction: React.PropTypes.oneOf(['prev', 'next']),
+    prevIcon: React.PropTypes.node,
+    nextIcon: React.PropTypes.node
   },
 
   getDefaultProps() {
@@ -27,14 +30,16 @@ const Carousel = React.createClass({
       pauseOnHover: true,
       wrap: true,
       indicators: true,
-      controls: true
+      controls: true,
+      prevIcon: <Glyphicon glyph="chevron-left" />,
+      nextIcon: <Glyphicon glyph="chevron-right" />
     };
   },
 
   getInitialState() {
     return {
       activeIndex: this.props.defaultActiveIndex == null ?
-        0 : this.props.defaultActiveIndex,
+          0 : this.props.defaultActiveIndex,
       previousActiveIndex: null,
       direction: null
     };
@@ -46,7 +51,7 @@ const Carousel = React.createClass({
     }
 
     return prevIndex > index ?
-      'prev' : 'next';
+        'prev' : 'next';
   },
 
   componentWillReceiveProps(nextProps) {
@@ -57,7 +62,7 @@ const Carousel = React.createClass({
       this.setState({
         previousActiveIndex: activeIndex,
         direction: nextProps.direction != null ?
-          nextProps.direction : this.getDirection(activeIndex, nextProps.activeIndex)
+            nextProps.direction : this.getDirection(activeIndex, nextProps.activeIndex)
       });
     }
   },
@@ -141,33 +146,33 @@ const Carousel = React.createClass({
     };
 
     return (
-      <div
-        {...this.props}
-        className={classNames(this.props.className, classes)}
-        onMouseOver={this.handleMouseOver}
-        onMouseOut={this.handleMouseOut}>
-        {this.props.indicators ? this.renderIndicators() : null}
-        <div className="carousel-inner" ref="inner">
-          {ValidComponentChildren.map(this.props.children, this.renderItem)}
+        <div
+            {...this.props}
+            className={classNames(this.props.className, classes)}
+            onMouseOver={this.handleMouseOver}
+            onMouseOut={this.handleMouseOut}>
+          {this.props.indicators ? this.renderIndicators() : null}
+          <div className="carousel-inner" ref="inner">
+            {ValidComponentChildren.map(this.props.children, this.renderItem)}
+          </div>
+          {this.props.controls ? this.renderControls() : null}
         </div>
-        {this.props.controls ? this.renderControls() : null}
-      </div>
     );
   },
 
   renderPrev() {
     return (
-      <a className="left carousel-control" href="#prev" key={0} onClick={this.prev}>
-        <span className="glyphicon glyphicon-chevron-left" />
-      </a>
+        <a className="left carousel-control" href="#prev" key={0} onClick={this.prev}>
+          {this.props.prevIcon}
+        </a>
     );
   },
 
   renderNext() {
     return (
-      <a className="right carousel-control" href="#next" key={1} onClick={this.next}>
-        <span className="glyphicon glyphicon-chevron-right"/>
-      </a>
+        <a className="right carousel-control" href="#next" key={1} onClick={this.next}>
+          {this.props.nextIcon}
+        </a>
     );
   },
 
@@ -190,33 +195,33 @@ const Carousel = React.createClass({
 
   renderIndicator(child, index) {
     let className = (index === this.getActiveIndex()) ?
-      'active' : null;
+        'active' : null;
 
     return (
-      <li
-        key={index}
-        className={className}
-        onClick={this.handleSelect.bind(this, index, null)} />
+        <li
+            key={index}
+            className={className}
+            onClick={this.handleSelect.bind(this, index, null)} />
     );
   },
 
   renderIndicators() {
     let indicators = [];
     ValidComponentChildren
-      .forEach(this.props.children, function(child, index) {
-        indicators.push(
-          this.renderIndicator(child, index),
+        .forEach(this.props.children, function(child, index) {
+          indicators.push(
+              this.renderIndicator(child, index),
 
-          // Force whitespace between indicator elements, bootstrap
-          // requires this for correct spacing of elements.
-          ' '
-        );
-      }, this);
+              // Force whitespace between indicator elements, bootstrap
+              // requires this for correct spacing of elements.
+              ' '
+          );
+        }, this);
 
     return (
-      <ol className="carousel-indicators">
-        {indicators}
-      </ol>
+        <ol className="carousel-indicators">
+          {indicators}
+        </ol>
     );
   },
 
@@ -241,7 +246,7 @@ const Carousel = React.createClass({
     let activeIndex = this.getActiveIndex();
     let isActive = (index === activeIndex);
     let isPreviousActive = this.state.previousActiveIndex != null &&
-            this.state.previousActiveIndex === index && this.props.slide;
+        this.state.previousActiveIndex === index && this.props.slide;
 
     return cloneElement(
         child,
@@ -255,7 +260,7 @@ const Carousel = React.createClass({
           direction: this.state.direction,
           onAnimateOutEnd: isPreviousActive ? this.handleItemAnimateOutEnd : null
         }
-      );
+    );
   },
 
   handleSelect(index, direction) {
