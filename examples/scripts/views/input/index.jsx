@@ -1,7 +1,7 @@
 /**
  * Created by liubo on 15/3/12.
  */
-var Waves = require('../../mixins/waves');
+//var Waves = require('../../mixins/waves');
 var Panel = ReactBootstrap.Panel;
 var ListGroup = ReactBootstrap.ListGroup;
 var ListGroupItem = ReactBootstrap.ListGroupItem;
@@ -12,6 +12,8 @@ var Glyphicon = ReactBootstrap.Glyphicon;
 var Button = ReactBootstrap.Button;
 var DropdownButton = ReactBootstrap.DropdownButton;
 var MenuItem = ReactBootstrap.MenuItem;
+var Row = ReactBootstrap.Row;
+var Col = ReactBootstrap.Col;
 
 
 var App = React.createClass({
@@ -139,6 +141,71 @@ var App = React.createClass({
                                     <Input type='text' addonBefore={innerRadio} />
                                     <Input type='text' addonBefore={innerCheckbox} />
                                 </form>
+                            </ListGroupItem>
+                        </ListGroup>
+                    </Panel>
+
+                    <Panel collapsible defaultExpanded header='尺寸' bsStyle='info'>
+                        <ListGroup fill>
+                            <ListGroupItem>
+                                通过<code>bsSize</code>属性设置输入框尺寸
+                            </ListGroupItem>
+                            <ListGroupItem>
+                                <form>
+                                    <Input type='text' bsSize="large" placeholder='Large text' />
+                                    <Input type='text' bsSize="medium" placeholder='Normal text' />
+                                    <Input type='text' bsSize="small" placeholder='Small text' />
+                                </form>
+                            </ListGroupItem>
+                        </ListGroup>
+                    </Panel>
+
+                    <Panel collapsible defaultExpanded header='验证' bsStyle='info'>
+                        <ListGroup fill>
+                            <ListGroupItem>
+                                通过<code>bsStyle</code>属性设置输入框样式，包括<code>success, warning or error</code>，添加<code>hasFeedback</code>属性用来显示图标
+                            </ListGroupItem>
+                            <ListGroupItem>
+                                <form>
+                                    <Input type='text' bsStyle='success' label='Success' hasFeedback />
+                                    <Input type='text' bsStyle='warning' label='Warning' hasFeedback />
+                                    <Input type='text' bsStyle='error' label='Error' hasFeedback />
+                                </form>
+                            </ListGroupItem>
+                        </ListGroup>
+                    </Panel>
+
+                    <Panel collapsible defaultExpanded header='水平表单' bsStyle='info'>
+                        <ListGroup fill>
+                            <ListGroupItem>
+                                通过设置<code>labelClassName 和 wrapperClassName</code>属性设置表单列样式，<code>checkbox 和 radio</code>不需要特别处理
+                            </ListGroupItem>
+                            <ListGroupItem>
+                                <form className='form-horizontal'>
+                                    <Input type='text' label='Text' labelClassName='col-xs-2' wrapperClassName='col-xs-10' />
+                                    <Input type='textarea' label='Textarea' labelClassName='col-xs-2' wrapperClassName='col-xs-10' />
+                                    <Input type='checkbox' label='Checkbox' wrapperClassName='col-xs-offset-2 col-xs-10' help='Offset is applied to wrapper.' />
+                                </form>
+                            </ListGroupItem>
+                        </ListGroup>
+                    </Panel>
+
+                    <Panel collapsible defaultExpanded header='作为容器使用' bsStyle='info'>
+                        <ListGroup fill>
+                            <ListGroupItem>
+                                如果没有设置type属性，子元素将被展示，但不是一个input组件，不支持<code>getValue()</code>方法
+                            </ListGroupItem>
+                            <ListGroupItem>
+                                <Input label='Input wrapper' help='Use this when you need something other than the available input types.' wrapperClassName='wrapper'>
+                                    <Row>
+                                        <Col xs={6}>
+                                            <input type='text' className='form-control' />
+                                        </Col>
+                                        <Col xs={6}>
+                                            <input type='text' className='form-control' />
+                                        </Col>
+                                    </Row>
+                                </Input>
                             </ListGroupItem>
                         </ListGroup>
                     </Panel>
