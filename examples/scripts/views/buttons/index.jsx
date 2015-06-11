@@ -1,6 +1,7 @@
 /**
  * Created by liubo on 15/3/12.
  */
+var Navigator = require('../home/nav.jsx'); //导航
 var Waves = require('../../mixins/waves');
 var Panel = ReactBootstrap.Panel;
 var ListGroup = ReactBootstrap.ListGroup;
@@ -524,7 +525,7 @@ var App = React.createClass({
 
                 </div>
                 <div className="col-xs-6 col-md-4">
-
+                    <Navigator />
                 </div>
 
             </div>
