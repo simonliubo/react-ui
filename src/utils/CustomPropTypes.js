@@ -6,7 +6,7 @@ const CustomPropTypes = {
    *
    * The element can be provided in two forms:
    * - Directly passed
-   * - Or passed an object which has a `getDOMNode` method which will return the required DOM element
+   * - Or passed an object that has a `render` method
    *
    * @param props
    * @param propName
@@ -50,7 +50,7 @@ function createChainableTypeChecker(validate) {
     if (props[propName] == null) {
       if (isRequired) {
         return new Error(
-          'Required prop `' + propName + '` was not specified in ' +
+            'Required prop `' + propName + '` was not specified in ' +
             '`' + componentName + '`.'
         );
       }
@@ -68,9 +68,9 @@ function createChainableTypeChecker(validate) {
 function createMountableChecker() {
   function validate(props, propName, componentName) {
     if (typeof props[propName] !== 'object' ||
-      typeof props[propName].render !== 'function' && props[propName].nodeType !== 1) {
+        typeof props[propName].render !== 'function' && props[propName].nodeType !== 1) {
       return new Error(
-        'Invalid prop `' + propName + '` supplied to ' +
+          'Invalid prop `' + propName + '` supplied to ' +
           '`' + componentName + '`, expected a DOM element or an object that has a `render` method'
       );
     }
@@ -85,8 +85,8 @@ function createKeyOfChecker(obj) {
     if (!obj.hasOwnProperty(propValue)) {
       let valuesString = JSON.stringify(Object.keys(obj));
       return new Error(
-        `Invalid prop '${propName}' of value '${propValue}' ` +
-        `supplied to '${componentName}', expected one of ${valuesString}.`
+          `Invalid prop '${propName}' of value '${propValue}' ` +
+          `supplied to '${componentName}', expected one of ${valuesString}.`
       );
     }
   }
@@ -96,15 +96,15 @@ function createKeyOfChecker(obj) {
 function createSinglePropFromChecker(arrOfProps) {
   function validate(props, propName, componentName) {
     const usedPropCount = arrOfProps
-      .map(listedProp => props[listedProp])
-      .reduce((acc, curr) => acc + (curr !== undefined ? 1 : 0), 0);
+        .map(listedProp => props[listedProp])
+        .reduce((acc, curr) => acc + (curr !== undefined ? 1 : 0), 0);
 
     if (usedPropCount > 1) {
       const [first, ...others] = arrOfProps;
       const message = `${others.join(', ')} and ${first}`;
       return new Error(
-        `Invalid prop '${propName}', only one of the following ` +
-        `may be provided: ${message}`
+          `Invalid prop '${propName}', only one of the following ` +
+          `may be provided: ${message}`
       );
     }
   }
