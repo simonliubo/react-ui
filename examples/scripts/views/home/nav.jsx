@@ -18,6 +18,8 @@ var App = React.createClass({
                 <NavItem eventKey={"buttons"} title="buttons">按钮</NavItem>
                 <NavItem eventKey={"input"} title='input'>表单域</NavItem>
                 <NavItem eventKey={"progressbar"} title='progressbar'>进度条</NavItem>
+                <NavItem eventKey={"nav"} title='nav'>导航</NavItem>
+                <NavItem eventKey={"navbars"} title='navbars'>导航栏</NavItem>
             </Nav>
         );
     }
