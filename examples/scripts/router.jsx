@@ -16,6 +16,8 @@ var Nav = require("./views/nav/index.jsx"); 				//导航
 var NavBars = require("./views/navbars/index.jsx"); 		//导航栏
 var Pager = require("./views/pager/index.jsx"); 			//翻页
 var Alert = require("./views/alert/index.jsx"); 			//警告
+var List = require("./views/list/index.jsx"); 			    //列表
+var Badges = require("./views/badges/index.jsx"); 			//徽章
 
 //路由配置
 module.exports = {
@@ -30,6 +32,8 @@ module.exports = {
 			<Route path="navbars" name="navbars" handler={NavBars}/>
 			<Route path="pager" name="pager" handler={Pager}/>
 			<Route path="alert" name="alert" handler={Alert}/>
+			<Route path="list" name="list" handler={List}/>
+			<Route path="badges" name="badges" handler={Badges}/>
 		</Route>
 	)
 }

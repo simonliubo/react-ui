@@ -22,6 +22,8 @@ var App = React.createClass({
                 <NavItem eventKey={"navbars"} title='navbars'>导航栏</NavItem>
                 <NavItem eventKey={"pager"} title='pager'>翻页</NavItem>
                 <NavItem eventKey={"alert"} title='alert'>警告</NavItem>
+                <NavItem eventKey={"list"} title='list'>列表</NavItem>
+                <NavItem eventKey={"badges"} title='badges'>徽章</NavItem>
             </Nav>
         );
     }
