@@ -13,7 +13,7 @@ var Buttons = require("./views/buttons/index.jsx"); 		//按钮
 var Input = require("./views/input/index.jsx"); 			//表单域
 var ProgressBar = require("./views/progressbar/index.jsx");	//进度条
 var Nav = require("./views/nav/index.jsx"); 				//导航
-var NavBars = require("./views/navbars/index.jsx"); 			//导航栏
+var NavBars = require("./views/navbars/index.jsx"); 		//导航栏
 
 //路由配置
 module.exports = {
