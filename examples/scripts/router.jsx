@@ -18,6 +18,7 @@ var Pager = require("./views/pager/index.jsx"); 			//翻页
 var Alert = require("./views/alert/index.jsx"); 			//警告
 var List = require("./views/list/index.jsx"); 			    //列表
 var Badges = require("./views/badges/index.jsx"); 			//徽章
+var Glyphicons = require("./views/glyphicons/index.jsx"); 	//字体图标
 
 //路由配置
 module.exports = {
@@ -34,6 +35,7 @@ module.exports = {
 			<Route path="alert" name="alert" handler={Alert}/>
 			<Route path="list" name="list" handler={List}/>
 			<Route path="badges" name="badges" handler={Badges}/>
+			<Route path="glyphicons" name="glyphicons" handler={Glyphicons}/>
 		</Route>
 	)
 }

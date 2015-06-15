@@ -15,6 +15,7 @@ var App = React.createClass({
 
         return(
             <Nav bsStyle='pills' stacked activeKey={activeKey} onSelect={this.handleSelect}>
+                <NavItem eventKey={"glyphicons"} title='glyphicons'>字体图标</NavItem>
                 <NavItem eventKey={"buttons"} title="buttons">按钮</NavItem>
                 <NavItem eventKey={"input"} title='input'>表单域</NavItem>
                 <NavItem eventKey={"progressbar"} title='progressbar'>进度条</NavItem>
