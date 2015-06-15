@@ -20,6 +20,8 @@ var App = React.createClass({
                 <NavItem eventKey={"progressbar"} title='progressbar'>进度条</NavItem>
                 <NavItem eventKey={"nav"} title='nav'>导航</NavItem>
                 <NavItem eventKey={"navbars"} title='navbars'>导航栏</NavItem>
+                <NavItem eventKey={"pager"} title='pager'>翻页</NavItem>
+                <NavItem eventKey={"alert"} title='alert'>警告</NavItem>
             </Nav>
         );
     }
