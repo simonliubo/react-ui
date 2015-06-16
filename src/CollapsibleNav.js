@@ -29,13 +29,13 @@ const CollapsibleNav = React.createClass({
     for (let key in nodes) {
       if (nodes.hasOwnProperty(key)) {
 
-        let n = React.findDOMNode(nodes[key])
-          , h = n.offsetHeight
-          , computedStyles = domUtils.getComputedStyles(n);
+        let n = React.findDOMNode(nodes[key]);
+        let h = n.offsetHeight;
+        let computedStyles = domUtils.getComputedStyles(n);
 
         height += (h +
-          parseInt(computedStyles.marginTop, 10) +
-          parseInt(computedStyles.marginBottom, 10)
+        parseInt(computedStyles.marginTop, 10) +
+        parseInt(computedStyles.marginBottom, 10)
         );
       }
     }
@@ -50,9 +50,9 @@ const CollapsibleNav = React.createClass({
     const renderChildren = this.props.collapsible ? this.renderCollapsibleNavChildren : this.renderChildren;
 
     return (
-      <div eventKey={this.props.eventKey} className={classNames(this.props.className, classes)} >
-        {ValidComponentChildren.map(this.props.children, renderChildren)}
-      </div>
+        <div eventKey={this.props.eventKey} className={classNames(this.props.className, classes)} >
+          {ValidComponentChildren.map(this.props.children, renderChildren)}
+        </div>
     );
   },
 
@@ -77,30 +77,30 @@ const CollapsibleNav = React.createClass({
   renderChildren(child, index) {
     let key = child.key ? child.key : index;
     return cloneElement(
-      child,
-      {
-        activeKey: this.props.activeKey,
-        activeHref: this.props.activeHref,
-        ref: 'nocollapse_' + key,
-        key,
-        navItem: true
-      }
+        child,
+        {
+          activeKey: this.props.activeKey,
+          activeHref: this.props.activeHref,
+          ref: 'nocollapse_' + key,
+          key,
+          navItem: true
+        }
     );
   },
 
   renderCollapsibleNavChildren(child, index) {
     let key = child.key ? child.key : index;
     return cloneElement(
-      child,
-      {
-        active: this.getChildActiveProp(child),
-        activeKey: this.props.activeKey,
-        activeHref: this.props.activeHref,
-        onSelect: createChainedFunction(child.props.onSelect, this.props.onSelect),
-        ref: 'collapsible_' + key,
-        key,
-        navItem: true
-      }
+        child,
+        {
+          active: this.getChildActiveProp(child),
+          activeKey: this.props.activeKey,
+          activeHref: this.props.activeHref,
+          onSelect: createChainedFunction(child.props.onSelect, this.props.onSelect),
+          ref: 'collapsible_' + key,
+          key,
+          navItem: true
+        }
     );
   }
 });

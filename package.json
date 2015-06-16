@@ -16,7 +16,7 @@
     "docs": "babel-node docs/dev-run",
     "docs-prod": "npm run docs-build && NODE_ENV=production babel-node docs/server.js",
     "docs-prod-unoptimized": "npm run docs-build -- --dev && NODE_ENV=production babel-node docs/server.js",
-    "dev-server": "webpack-dev-server --config webpack.examples.config.js --progress --colors --inline --host localhost --port 8080 --content-base examples/",
+    "dev-server": "webpack-dev-server --config webpack.examples.config.js --progress --colors --inline --host 10.129.10.63 --port 8080 --content-base examples/",
     "hot-server": "webpack-dev-server --config webpack.hot.examples.config.js --hot --progress --colors --inline --port8080 --content-base examples/",
     "build-examples": "webpack --config webpack.prod.examples.config.js --progress --profile --colors"
   },

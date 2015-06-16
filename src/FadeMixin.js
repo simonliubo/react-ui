@@ -57,9 +57,9 @@ export default {
   },
 
   componentWillUnmount() {
-    let els = getElementsAndSelf(React.findDOMNode(this), ['fade']),
-        container = (this.props.container && React.findDOMNode(this.props.container)) ||
-          domUtils.ownerDocument(this).body;
+    let els = getElementsAndSelf(React.findDOMNode(this), ['fade']);
+    let container = (this.props.container && React.findDOMNode(this.props.container)) ||
+        domUtils.ownerDocument(this).body;
 
     if (els.length) {
       this._fadeOutEl = document.createElement('div');

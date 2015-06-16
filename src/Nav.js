@@ -36,9 +36,9 @@ const Nav = React.createClass({
   },
 
   getCollapsibleDimensionValue() {
-    let node = React.findDOMNode(this.refs.ul),
-        height = node.offsetHeight,
-        computedStyles = domUtils.getComputedStyles(node);
+    let node = React.findDOMNode(this.refs.ul);
+    let height = node.offsetHeight;
+    let computedStyles = domUtils.getComputedStyles(node);
 
     return height + parseInt(computedStyles.marginTop, 10) + parseInt(computedStyles.marginBottom, 10);
   },
@@ -51,9 +51,9 @@ const Nav = React.createClass({
     }
 
     return (
-      <nav {...this.props} className={classNames(this.props.className, classes)}>
-        {this.renderUl()}
-      </nav>
+        <nav {...this.props} className={classNames(this.props.className, classes)}>
+          {this.renderUl()}
+        </nav>
     );
   },
 
@@ -67,9 +67,9 @@ const Nav = React.createClass({
     classes['navbar-right'] = this.props.right;
 
     return (
-      <ul {...this.props} className={classNames(this.props.className, classes)} ref="ul">
-        {ValidComponentChildren.map(this.props.children, this.renderNavItem)}
-      </ul>
+        <ul {...this.props} className={classNames(this.props.className, classes)} ref="ul">
+          {ValidComponentChildren.map(this.props.children, this.renderNavItem)}
+        </ul>
     );
   },
 
@@ -93,15 +93,15 @@ const Nav = React.createClass({
 
   renderNavItem(child, index) {
     return cloneElement(
-      child,
-      {
-        active: this.getChildActiveProp(child),
-        activeKey: this.props.activeKey,
-        activeHref: this.props.activeHref,
-        onSelect: createChainedFunction(child.props.onSelect, this.props.onSelect),
-        key: child.key ? child.key : index,
-        navItem: true
-      }
+        child,
+        {
+          active: this.getChildActiveProp(child),
+          activeKey: this.props.activeKey,
+          activeHref: this.props.activeHref,
+          onSelect: createChainedFunction(child.props.onSelect, this.props.onSelect),
+          key: child.key ? child.key : index,
+          navItem: true
+        }
     );
   }
 });
