@@ -54,7 +54,11 @@ function onFocus(context, handler) {
 
 let scrollbarSize;
 
-if (domUtils.canUseDom) {
+function getScrollbarSize(){
+  if ( scrollbarSize !== undefined ){
+    return scrollbarSize;
+  }
+
   let scrollDiv = document.createElement('div');
 
   scrollDiv.style.position = 'absolute';
@@ -64,12 +68,12 @@ if (domUtils.canUseDom) {
   scrollDiv.style.overflow = 'scroll';
 
   document.body.appendChild(scrollDiv);
-
   scrollbarSize = scrollDiv.offsetWidth - scrollDiv.clientWidth;
-
   document.body.removeChild(scrollDiv);
+
   scrollDiv = null;
 }
+
 
 const Modal = React.createClass({
 
@@ -210,7 +214,7 @@ componentDidMount() {
   this._originalPadding = container.style.paddingRight;
 
   if (this._containerIsOverflowing) {
-    container.style.paddingRight = parseInt(this._originalPadding || 0, 10) + scrollbarSize + 'px';
+    container.style.paddingRight = parseInt(this._originalPadding || 0, 10) + getScrollbarSize() + 'px';
   }
 
   if (this.props.backdrop) {
@@ -269,9 +273,12 @@ handleWindowResize() {
 },
 
 focusModalContent () {
-  this.lastFocus = domUtils.activeElement(this);
-  let modalContent = React.findDOMNode(this.refs.modal);
-  modalContent.focus();
+  if (this.props.enforceFocus) {
+    this.lastFocus = domUtils.activeElement(this);
+
+    let modalContent = React.findDOMNode(this.refs.modal);
+    modalContent.focus();
+  }
 },
 
 restoreLastFocus () {
@@ -305,8 +312,8 @@ _getStyles() {
 
   return {
     dialogStyles: {
-      paddingRight: containerIsOverflowing && !modalIsOverflowing ? scrollbarSize : void 0,
-      paddingLeft:  !containerIsOverflowing && modalIsOverflowing ? scrollbarSize : void 0
+      paddingRight: containerIsOverflowing && !modalIsOverflowing ? getScrollbarSize() : void 0,
+      paddingLeft:  !containerIsOverflowing && modalIsOverflowing ? getScrollbarSize() : void 0
     }
   };
 }

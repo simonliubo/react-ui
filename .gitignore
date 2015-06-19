@@ -11,3 +11,4 @@
 /lib/
 /examples/scripts/vendor/
 /examples/extras/
+/.coverage/
