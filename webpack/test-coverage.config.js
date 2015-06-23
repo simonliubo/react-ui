@@ -2,14 +2,33 @@
  * Created by liubo on 15/6/19.
  */
 import _ from 'lodash';
+import path from 'path';
 import { jsLoader } from './base.config';
 import testConfig from './test.config';
+
+const paths = {
+    SRC: path.resolve('src'),
+    TEST: path.resolve('test'),
+    TOOLS: path.resolve('tools') // for tools/public-components.js
+};
 
 export default _.extend({}, testConfig, {
     module: {
         loaders: [
-            { test: /\.js/, loader: `${jsLoader}!isparta`, exclude: /node_modules|test[\/\\]/ },
-            { test: /\.js/, loader: jsLoader, include: /test[\/\\]/ }
+            {
+                test: /\.js/,
+                include: [paths.SRC, paths.TEST, paths.TOOLS],
+                loader: jsLoader,
+                exclude: /node_modules/
+            }
+        ],
+        preLoaders: [
+            {
+                test: /\.js/,
+                loader: 'isparta',
+                include: paths.SRC,
+                exclude: /node_modules/
+            }
         ]
     }
 });

@@ -31,7 +31,7 @@ const Button = React.createClass({
     classes = {
       active: this.props.active,
       'btn-block': this.props.block,
-      ...classes // eslint-disable-line object-shorthand
+      ...classes
     };
 
     if (this.props.navItem) {
@@ -39,7 +39,7 @@ const Button = React.createClass({
     }
 
     renderFuncName = this.props.href || this.props.target || this.props.navDropdown ?
-      'renderAnchor' : 'renderButton';
+        'renderAnchor' : 'renderButton';
 
     return this[renderFuncName](classes);
   },
@@ -51,13 +51,13 @@ const Button = React.createClass({
     classes.disabled = this.props.disabled;
 
     return (
-      <Component
-        {...this.props}
-        href={href}
-        className={classNames(this.props.className, classes)}
-        role="button">
-        {this.props.children}
-      </Component>
+        <Component
+            {...this.props}
+            href={href}
+            className={classNames(this.props.className, classes)}
+            role="button">
+          {this.props.children}
+        </Component>
     );
   },
 
@@ -65,11 +65,11 @@ const Button = React.createClass({
     let Component = this.props.componentClass || 'button';
 
     return (
-      <Component
-        {...this.props}
-        className={classNames(this.props.className, classes)}>
-        {this.props.children}
-      </Component>
+        <Component
+            {...this.props}
+            className={classNames(this.props.className, classes)}>
+          {this.props.children}
+        </Component>
     );
   },
 
@@ -79,9 +79,9 @@ const Button = React.createClass({
     };
 
     return (
-      <li className={classNames(liClasses)}>
-        {this.renderAnchor(classes)}
-      </li>
+        <li className={classNames(liClasses)}>
+          {this.renderAnchor(classes)}
+        </li>
     );
   }
 });

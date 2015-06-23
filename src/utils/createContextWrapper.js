@@ -12,8 +12,7 @@ export default function createContextWrapper(Trigger, propName) {
 
       render() {
         // Strip injected props from below.
-        const {wrapped, ...props} = this.props; // eslint-disable-line object-shorthand
-        delete props.context;
+        const {wrapped, context, ...props} = this.props;
 
         return React.cloneElement(wrapped, props);
       }
@@ -26,10 +25,10 @@ export default function createContextWrapper(Trigger, propName) {
       props[propName] = this.getWrappedOverlay();
 
       return (
-        <Trigger {...props}>
-        {this.props.children}
-        </Trigger>
-      );
+    <Trigger {...props}>
+    {this.props.children}
+    </Trigger>
+    );
     }
 
     getWrappedOverlay() {

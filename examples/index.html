@@ -64,7 +64,59 @@
         <!--<link rel="stylesheet" href="styles/bootstrap.min.css">-->
     </head>
     <body>
+        <!--<video id="mvideo"-->
+               <!--poster="loading5.gif"-->
+               <!--width="400px"-->
+               <!--heigt="400px">-->
+            <!--&lt;!&ndash;<source src="https://examvideo4test.blob.core.chinacloudapi.cn/examvideo4test/177853448.webm" type="video/webm">&ndash;&gt;-->
+        <!--</video>-->
 
+        <!--<audio id="maudio">-->
+                <!--&lt;!&ndash;<source&ndash;&gt;-->
+                        <!--&lt;!&ndash;src="https://examvideo4test.blob.core.chinacloudapi.cn/examvideo4test/144652066.wav">&ndash;&gt;-->
+        <!--</audio>-->
+        <!--<script src="http://lib.sinaapp.com/js/jquery/1.10/jquery-1.10.0.min.js"></script>-->
+<!--<script>-->
+    <!--var Mvideo = document.getElementById("mvideo");-->
+    <!--var Maudio = document.getElementById("maudio");-->
+    <!--var mPlay = $.Deferred(), aPlay = $.Deferred();-->
+    <!--Maudio.addEventListener("canplaythrough", function(){-->
+        <!--aPlay.resolve();-->
+    <!--},false);-->
+    <!--Mvideo.addEventListener("canplaythrough", function(){-->
+        <!--mPlay.resolve();-->
+    <!--}, false);-->
+    <!--Maudio.addEventListener("play", function(){-->
+        <!--Mvideo.play();-->
+    <!--});-->
+    <!--function waitVideo(){-->
+        <!--return mPlay;-->
+    <!--}-->
+    <!--function waitAudio(){-->
+        <!--return aPlay;-->
+    <!--}-->
+
+    <!--$.when(waitVideo(), waitAudio())-->
+            <!--.done(function(){-->
+                <!--if(checkState()){-->
+                    <!--Maudio.controls = true;-->
+                    <!--Maudio.currentTime = 0;-->
+                    <!--Mvideo.currentTime = 0;-->
+                <!--}-->
+            <!--})-->
+            <!--.fail(function(){ alert("出错啦！"); });-->
+
+    <!--Maudio.type = "audio/Wav";-->
+    <!--Maudio.src = "https://examvideo4test.blob.core.chinacloudapi.cn/examvideo4test/144652066.wav";-->
+    <!--Mvideo.type = "video/webm";-->
+    <!--Mvideo.src = "https://examvideo4test.blob.core.chinacloudapi.cn/examvideo4test/177853448.webm";-->
+
+    <!--//检查状态-->
+    <!--function checkState(obj){-->
+        <!--return (Maudio.readyState != 0 && Maudio.readyState != 0);-->
+    <!--}-->
+
+<!--</script>-->
         <!-- Add your site or application content here -->
         <div id="bs-main" class="bs-main container"></div>
 

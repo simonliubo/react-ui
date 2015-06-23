@@ -43,8 +43,8 @@ const TabPane = React.createClass({
     }
     if (this.state.animateOut) {
       TransitionEvents.addEndEventListener(
-        React.findDOMNode(this),
-        this.stopAnimateOut
+          React.findDOMNode(this),
+          this.stopAnimateOut
       );
     }
   },
@@ -78,9 +78,13 @@ const TabPane = React.createClass({
     };
 
     return (
-      <div {...this.props} className={classNames(this.props.className, classes)}>
-        {this.props.children}
-      </div>
+        <div {...this.props}
+            role='tabpanel'
+            aria-hidden={!this.props.active}
+            className={classNames(this.props.className, classes)}
+            >
+          {this.props.children}
+        </div>
     );
   }
 });

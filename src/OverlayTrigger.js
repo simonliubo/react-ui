@@ -50,7 +50,7 @@ const OverlayTrigger = React.createClass({
   getInitialState() {
     return {
       isOverlayShown: this.props.defaultOverlayShown == null ?
-        false : this.props.defaultOverlayShown,
+          false : this.props.defaultOverlayShown,
       overlayLeft: null,
       overlayTop: null,
       arrowOffsetLeft: null,
@@ -76,7 +76,7 @@ const OverlayTrigger = React.createClass({
     if (this.state.isOverlayShown) {
       this.hide();
     } else {
-     this.show();
+      this.show();
     }
   },
 
@@ -86,22 +86,22 @@ const OverlayTrigger = React.createClass({
     }
 
     const overlay = cloneElement(
-      this.props.overlay,
-      {
-        onRequestHide: this.hide,
-        placement: this.props.placement,
-        positionLeft: this.state.overlayLeft,
-        positionTop: this.state.overlayTop,
-        arrowOffsetLeft: this.state.arrowOffsetLeft,
-        arrowOffsetTop: this.state.arrowOffsetTop
-      }
+        this.props.overlay,
+        {
+          onRequestHide: this.hide,
+          placement: this.props.placement,
+          positionLeft: this.state.overlayLeft,
+          positionTop: this.state.overlayTop,
+          arrowOffsetLeft: this.state.arrowOffsetLeft,
+          arrowOffsetTop: this.state.arrowOffsetTop
+        }
     );
 
     if (this.props.rootClose) {
       return (
-        <RootCloseWrapper onRootClose={this.hide}>
-          {overlay}
-        </RootCloseWrapper>
+          <RootCloseWrapper onRootClose={this.hide}>
+            {overlay}
+          </RootCloseWrapper>
       );
     } else {
       return overlay;
@@ -122,8 +122,8 @@ const OverlayTrigger = React.createClass({
     }
 
     if (isOneOf('hover', this.props.trigger)) {
-      props.onMouseOver = createChainedFunction(this.handleDelayedShow, this.props.onMouseOver);
-      props.onMouseOut = createChainedFunction(this.handleDelayedHide, this.props.onMouseOut);
+      props.onMouseEnter = createChainedFunction(this.handleDelayedShow, this.props.onMouseEnter);
+      props.onMouseLeave = createChainedFunction(this.handleDelayedHide, this.props.onMouseLeave);
     }
 
     if (isOneOf('focus', this.props.trigger)) {
@@ -132,8 +132,8 @@ const OverlayTrigger = React.createClass({
     }
 
     return cloneElement(
-      child,
-      props
+        child,
+        props
     );
   },
 
@@ -155,7 +155,7 @@ const OverlayTrigger = React.createClass({
     }
 
     const delay = this.props.delayShow != null ?
-      this.props.delayShow : this.props.delay;
+        this.props.delayShow : this.props.delay;
 
     if (!delay) {
       this.show();
@@ -176,7 +176,7 @@ const OverlayTrigger = React.createClass({
     }
 
     const delay = this.props.delayHide != null ?
-      this.props.delayHide : this.props.delay;
+        this.props.delayHide : this.props.delay;
 
     if (!delay) {
       this.hide();
@@ -235,8 +235,8 @@ const OverlayTrigger = React.createClass({
       arrowOffsetTop = null;
     } else {
       throw new Error(
-        'calcOverlayPosition(): No such placement of "' +
-        this.props.placement + '" found.'
+          'calcOverlayPosition(): No such placement of "' +
+          this.props.placement + '" found.'
       );
     }
 
@@ -286,8 +286,8 @@ const OverlayTrigger = React.createClass({
       width = window.innerWidth;
       height = window.innerHeight;
       scroll =
-        domUtils.ownerDocument(containerNode).documentElement.scrollTop ||
-        containerNode.scrollTop;
+          domUtils.ownerDocument(containerNode).documentElement.scrollTop ||
+          containerNode.scrollTop;
     } else {
       width = containerNode.offsetWidth;
       height = containerNode.offsetHeight;
@@ -302,10 +302,10 @@ const OverlayTrigger = React.createClass({
     const container = this.getContainerDOMNode();
 
     const offset = container.tagName === 'BODY' ?
-      domUtils.getOffset(node) : domUtils.getPosition(node, container);
+        domUtils.getOffset(node) : domUtils.getPosition(node, container);
 
     return {
-      ...offset, // eslint-disable-line object-shorthand
+      ...offset,
       height: node.offsetHeight,
       width: node.offsetWidth
     };

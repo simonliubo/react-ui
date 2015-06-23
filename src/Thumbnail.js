@@ -5,6 +5,12 @@ import BootstrapMixin from './BootstrapMixin';
 const Thumbnail = React.createClass({
   mixins: [BootstrapMixin],
 
+  propTypes: {
+    alt: React.PropTypes.string,
+    href: React.PropTypes.string,
+    src: React.PropTypes.string
+  },
+
   getDefaultProps() {
     return {
       bsClass: 'thumbnail'
@@ -16,27 +22,27 @@ const Thumbnail = React.createClass({
 
     if(this.props.href) {
       return (
-        <a {...this.props} href={this.props.href} className={classSet(this.props.className, classes)}>
-          <img src={this.props.src} alt={this.props.alt} />
-        </a>
+          <a {...this.props} href={this.props.href} className={classSet(this.props.className, classes)}>
+            <img src={this.props.src} alt={this.props.alt} />
+          </a>
       );
     }
     else {
       if(this.props.children) {
         return (
-          <div {...this.props} className={classSet(this.props.className, classes)}>
-            <img src={this.props.src} alt={this.props.alt} />
-            <div className="caption">
-              {this.props.children}
+            <div {...this.props} className={classSet(this.props.className, classes)}>
+              <img src={this.props.src} alt={this.props.alt} />
+              <div className="caption">
+                {this.props.children}
+              </div>
             </div>
-          </div>
         );
       }
       else {
         return (
-          <div {...this.props} className={classSet(this.props.className, classes)}>
-            <img src={this.props.src} alt={this.props.alt} />
-          </div>
+            <div {...this.props} className={classSet(this.props.className, classes)}>
+              <img src={this.props.src} alt={this.props.alt} />
+            </div>
         );
       }
     }

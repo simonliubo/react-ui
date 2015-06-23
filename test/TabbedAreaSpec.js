@@ -1,16 +1,17 @@
 import React from 'react';
 import ReactTestUtils from 'react/lib/ReactTestUtils';
 import TabbedArea from '../src/TabbedArea';
+import NavItem from '../src/NavItem';
 import TabPane from '../src/TabPane';
 import ValidComponentChildren from '../src/utils/ValidComponentChildren';
 
 describe('TabbedArea', function () {
   it('Should show the correct tab', function () {
     let instance = ReactTestUtils.renderIntoDocument(
-      <TabbedArea activeKey={1}>
-        <TabPane tab="Tab 1" eventKey={1}>Tab 1 content</TabPane>
-        <TabPane tab="Tab 2" eventKey={2}>Tab 2 content</TabPane>
-      </TabbedArea>
+        <TabbedArea activeKey={1}>
+          <TabPane tab="Tab 1" eventKey={1}>Tab 1 content</TabPane>
+          <TabPane tab="Tab 2" eventKey={2}>Tab 2 content</TabPane>
+        </TabbedArea>
     );
 
     let panes = ReactTestUtils.scryRenderedComponentsWithType(instance, TabPane);
@@ -25,11 +26,11 @@ describe('TabbedArea', function () {
 
   it('Should only show the tabs with `TabPane.props.tab` set', function () {
     let instance = ReactTestUtils.renderIntoDocument(
-      <TabbedArea activeKey={3}>
-        <TabPane tab="Tab 1" eventKey={1}>Tab 1 content</TabPane>
-        <TabPane eventKey={2}>Tab 2 content</TabPane>
-        <TabPane tab="Tab 2" eventKey={3}>Tab 3 content</TabPane>
-      </TabbedArea>
+        <TabbedArea activeKey={3}>
+          <TabPane tab="Tab 1" eventKey={1}>Tab 1 content</TabPane>
+          <TabPane eventKey={2}>Tab 2 content</TabPane>
+          <TabPane tab="Tab 2" eventKey={3}>Tab 3 content</TabPane>
+        </TabbedArea>
     );
 
     let tabbedArea = ReactTestUtils.findRenderedComponentWithType(instance, TabbedArea);
@@ -40,13 +41,13 @@ describe('TabbedArea', function () {
 
   it('Should allow tab to have React components', function () {
     let tabTitle = (
-      <strong className="special-tab">Tab 2</strong>
+        <strong className="special-tab">Tab 2</strong>
     );
     let instance = ReactTestUtils.renderIntoDocument(
-      <TabbedArea activeKey={2}>
-        <TabPane tab="Tab 1" eventKey={1}>Tab 1 content</TabPane>
-        <TabPane tab={tabTitle} eventKey={2}>Tab 2 content</TabPane>
-      </TabbedArea>
+        <TabbedArea activeKey={2}>
+          <TabPane tab="Tab 1" eventKey={1}>Tab 1 content</TabPane>
+          <TabPane tab={tabTitle} eventKey={2}>Tab 2 content</TabPane>
+        </TabbedArea>
     );
 
     assert.ok(ReactTestUtils.findRenderedDOMComponentWithClass(instance.refs.tabs, 'special-tab'));
@@ -60,38 +61,38 @@ describe('TabbedArea', function () {
 
     let tab2 = <span className="tab2">Tab2</span>;
     let instance = ReactTestUtils.renderIntoDocument(
-      <TabbedArea onSelect={onSelect} activeKey={1}>
-        <TabPane tab="Tab 1" eventKey='1'>Tab 1 content</TabPane>
-        <TabPane tab={tab2} eventKey='2'>Tab 2 content</TabPane>
-      </TabbedArea>
+        <TabbedArea onSelect={onSelect} activeKey={1}>
+          <TabPane tab="Tab 1" eventKey='1'>Tab 1 content</TabPane>
+          <TabPane tab={tab2} eventKey='2'>Tab 2 content</TabPane>
+        </TabbedArea>
     );
 
 
     ReactTestUtils.Simulate.click(
-      ReactTestUtils.findRenderedDOMComponentWithClass(instance, 'tab2')
+        ReactTestUtils.findRenderedDOMComponentWithClass(instance, 'tab2')
     );
   });
 
   it('Should have children with the correct DOM properties', function () {
     let instance = ReactTestUtils.renderIntoDocument(
-      <TabbedArea activeKey={1}>
-        <TabPane tab="Tab 1" className="custom" id="pane0id" eventKey={1}>Tab 1 content</TabPane>
-        <TabPane tab="Tab 2" eventKey={2}>Tab 2 content</TabPane>
-      </TabbedArea>
+        <TabbedArea activeKey={1}>
+          <TabPane tab="Tab 1" className="custom" id="pane0id" eventKey={1}>Tab 1 content</TabPane>
+          <TabPane tab="Tab 2" eventKey={2}>Tab 2 content</TabPane>
+        </TabbedArea>
     );
 
     let panes = ReactTestUtils.scryRenderedComponentsWithType(instance, TabPane);
 
-    assert.ok(panes[0].getDOMNode().className.match(/\bcustom\b/));
-    assert.equal(panes[0].getDOMNode().id, 'pane0id');
+    assert.ok(React.findDOMNode(panes[0]).className.match(/\bcustom\b/));
+    assert.equal(React.findDOMNode(panes[0]).id, 'pane0id');
   });
 
   it('Should show the correct initial pane', function () {
     let instance = ReactTestUtils.renderIntoDocument(
-      <TabbedArea defaultActiveKey={2}>
-        <TabPane tab="Tab 1" eventKey={1}>Tab 1 content</TabPane>
-        <TabPane tab="Tab 2" eventKey={2}>Tab 2 content</TabPane>
-      </TabbedArea>
+        <TabbedArea defaultActiveKey={2}>
+          <TabPane tab="Tab 1" eventKey={1}>Tab 1 content</TabPane>
+          <TabPane tab="Tab 2" eventKey={2}>Tab 2 content</TabPane>
+        </TabbedArea>
     );
 
     let tabbedArea = ReactTestUtils.findRenderedComponentWithType(instance, TabbedArea);
@@ -106,10 +107,10 @@ describe('TabbedArea', function () {
 
   it('Should show the correct first tab with no active key value', function () {
     let instance = ReactTestUtils.renderIntoDocument(
-      <TabbedArea>
-        <TabPane tab="Tab 1" eventKey={1}>Tab 1 content</TabPane>
-        <TabPane tab="Tab 2" eventKey={2}>Tab 2 content</TabPane>
-      </TabbedArea>
+        <TabbedArea>
+          <TabPane tab="Tab 1" eventKey={1}>Tab 1 content</TabPane>
+          <TabPane tab="Tab 2" eventKey={2}>Tab 2 content</TabPane>
+        </TabbedArea>
     );
 
     let tabbedArea = ReactTestUtils.findRenderedComponentWithType(instance, TabbedArea);
@@ -131,10 +132,10 @@ describe('TabbedArea', function () {
     });
 
     let instance = ReactTestUtils.renderIntoDocument(
-      <TabbedArea>
-        {paneComponents}
-        {null}
-      </TabbedArea>
+        <TabbedArea>
+          {paneComponents}
+          {null}
+        </TabbedArea>
     );
 
     assert.equal(instance.refs.tabs.props.activeKey, 0);
@@ -143,17 +144,17 @@ describe('TabbedArea', function () {
   it('Should show the correct tab when selected', function () {
     let tab1 = <span className="tab1">Tab 1</span>;
     let instance = ReactTestUtils.renderIntoDocument(
-      <TabbedArea defaultActiveKey={2} animation={false}>
-        <TabPane tab={tab1} eventKey={1}>Tab 1 content</TabPane>
-        <TabPane tab="Tab 2" eventKey={2}>Tab 2 content</TabPane>
-      </TabbedArea>
+        <TabbedArea defaultActiveKey={2} animation={false}>
+          <TabPane tab={tab1} eventKey={1}>Tab 1 content</TabPane>
+          <TabPane tab="Tab 2" eventKey={2}>Tab 2 content</TabPane>
+        </TabbedArea>
     );
 
     let tabbedArea = ReactTestUtils.findRenderedComponentWithType(instance, TabbedArea);
     let panes = ReactTestUtils.scryRenderedComponentsWithType(instance, TabPane);
 
     ReactTestUtils.Simulate.click(
-      ReactTestUtils.findRenderedDOMComponentWithClass(instance, 'tab1')
+        ReactTestUtils.findRenderedDOMComponentWithClass(instance, 'tab1')
     );
 
     assert.equal(panes[0].props.active, true);
@@ -174,10 +175,10 @@ describe('TabbedArea', function () {
 
   it('Should pass bsStyle to Nav', function () {
     let instance = ReactTestUtils.renderIntoDocument(
-      <TabbedArea bsStyle="pills" defaultActiveKey={1} animation={false}>
-        <TabPane tab="Tab 1" eventKey={1}>Tab 1 content</TabPane>
-        <TabPane tab="Tab 2" eventKey={2}>Tab 2 content</TabPane>
-      </TabbedArea>
+        <TabbedArea bsStyle="pills" defaultActiveKey={1} animation={false}>
+          <TabPane tab="Tab 1" eventKey={1}>Tab 1 content</TabPane>
+          <TabPane tab="Tab 2" eventKey={2}>Tab 2 content</TabPane>
+        </TabbedArea>
     );
 
     assert.ok(ReactTestUtils.findRenderedDOMComponentWithClass(instance, 'nav-pills'));
@@ -185,24 +186,24 @@ describe('TabbedArea', function () {
 
   it('Should pass className to rendered Tab NavItem', function () {
     let instance = ReactTestUtils.renderIntoDocument(
-      <TabbedArea activeKey={3}>
-        <TabPane tab="Tab 1" eventKey={1}>Tab 1 content</TabPane>
-        <TabPane className="pull-right" tab="Tab 2" eventKey={3}>Tab 3 content</TabPane>
-      </TabbedArea>
+        <TabbedArea activeKey={3}>
+          <TabPane tab="Tab 1" eventKey={1}>Tab 1 content</TabPane>
+          <TabPane className="pull-right" tab="Tab 2" eventKey={3}>Tab 3 content</TabPane>
+        </TabbedArea>
     );
 
     let tabPane = ReactTestUtils.scryRenderedComponentsWithType(instance, TabPane);
 
     assert.equal(tabPane.length, 2);
-    assert.equal(tabPane[1].getDOMNode().getAttribute('class').match(/pull-right/)[0], 'pull-right');
+    assert.equal(React.findDOMNode(tabPane[1]).getAttribute('class').match(/pull-right/)[0], 'pull-right');
   });
 
   it('Should pass disabled to NavItem', function () {
     let instance = ReactTestUtils.renderIntoDocument(
-      <TabbedArea activeKey={1}>
-        <TabPane tab="Tab 1" eventKey={1}>Tab 1 content</TabPane>
-        <TabPane tab="Tab 2" eventKey={2} disabled={true}>Tab 2 content</TabPane>
-      </TabbedArea>
+        <TabbedArea activeKey={1}>
+          <TabPane tab="Tab 1" eventKey={1}>Tab 1 content</TabPane>
+          <TabPane tab="Tab 2" eventKey={2} disabled={true}>Tab 2 content</TabPane>
+        </TabbedArea>
     );
 
     assert.ok(ReactTestUtils.findRenderedDOMComponentWithClass(instance, 'disabled'));
@@ -211,17 +212,17 @@ describe('TabbedArea', function () {
   it('Should not show content when clicking disabled tab', function () {
     let tab1 = <span className="tab1">Tab 1</span>;
     let instance = ReactTestUtils.renderIntoDocument(
-      <TabbedArea defaultActiveKey={2} animation={false}>
-        <TabPane tab={tab1} eventKey={1} disabled={true}>Tab 1 content</TabPane>
-        <TabPane tab="Tab 2" eventKey={2}>Tab 2 content</TabPane>
-      </TabbedArea>
+        <TabbedArea defaultActiveKey={2} animation={false}>
+          <TabPane tab={tab1} eventKey={1} disabled={true}>Tab 1 content</TabPane>
+          <TabPane tab="Tab 2" eventKey={2}>Tab 2 content</TabPane>
+        </TabbedArea>
     );
 
     let tabbedArea = ReactTestUtils.findRenderedComponentWithType(instance, TabbedArea);
     let panes = ReactTestUtils.scryRenderedComponentsWithType(instance, TabPane);
 
     ReactTestUtils.Simulate.click(
-      ReactTestUtils.findRenderedDOMComponentWithClass(instance, 'tab1')
+        ReactTestUtils.findRenderedDOMComponentWithClass(instance, 'tab1')
     );
 
     assert.equal(panes[0].props.active, false);
@@ -229,5 +230,49 @@ describe('TabbedArea', function () {
     assert.equal(tabbedArea.refs.tabs.props.activeKey, 2);
   });
 
+  describe('Web Accessibility', function(){
 
+    it('Should generate ids from parent id', function () {
+      let instance = ReactTestUtils.renderIntoDocument(
+          <TabbedArea defaultActiveKey={2} id='tabs'>
+            <TabPane tab="Tab 1" eventKey={1}>Tab 1 content</TabPane>
+            <TabPane tab="Tab 2" eventKey={2}>Tab 2 content</TabPane>
+          </TabbedArea>
+      );
+
+      let tabs = ReactTestUtils.scryRenderedComponentsWithType(instance, NavItem);
+
+      tabs.every(tab =>
+          assert.ok(tab.props['aria-controls'] && tab.props.linkId));
+    });
+
+    it('Should add aria-controls', function () {
+      let instance = ReactTestUtils.renderIntoDocument(
+          <TabbedArea defaultActiveKey={2} id='tabs'>
+            <TabPane id='pane-1' tab="Tab 1" eventKey={1}>Tab 1 content</TabPane>
+            <TabPane id='pane-2' tab="Tab 2" eventKey={2}>Tab 2 content</TabPane>
+          </TabbedArea>
+      );
+
+      let panes = ReactTestUtils.scryRenderedComponentsWithType(instance, TabPane);
+
+      assert.equal(panes[0].props['aria-labelledby'], 'pane-1___tab');
+      assert.equal(panes[1].props['aria-labelledby'], 'pane-2___tab');
+    });
+
+    it('Should add aria-controls', function () {
+      let instance = ReactTestUtils.renderIntoDocument(
+          <TabbedArea defaultActiveKey={2} id='tabs'>
+            <TabPane id='pane-1' tab="Tab 1" eventKey={1}>Tab 1 content</TabPane>
+            <TabPane id='pane-2' tab="Tab 2" eventKey={2}>Tab 2 content</TabPane>
+          </TabbedArea>
+      );
+
+      let tabs = ReactTestUtils.scryRenderedComponentsWithType(instance, NavItem);
+
+      assert.equal(tabs[0].props['aria-controls'], 'pane-1');
+      assert.equal(tabs[1].props['aria-controls'], 'pane-2');
+    });
+
+  });
 });

@@ -55,13 +55,13 @@ const Panel = React.createClass({
 
   render() {
     return (
-      <div {...this.props}
-        className={classNames(this.props.className, this.getBsClassSet())}
-        id={this.props.collapsible ? null : this.props.id} onSelect={null}>
-        {this.renderHeading()}
-        {this.props.collapsible ? this.renderCollapsibleBody() : this.renderBody()}
-        {this.renderFooter()}
-      </div>
+        <div {...this.props}
+            className={classNames(this.props.className, this.getBsClassSet())}
+            id={this.props.collapsible ? null : this.props.id} onSelect={null}>
+          {this.renderHeading()}
+          {this.props.collapsible ? this.renderCollapsibleBody() : this.renderBody()}
+          {this.renderFooter()}
+        </div>
     );
   },
 
@@ -69,13 +69,13 @@ const Panel = React.createClass({
     let collapseClass = this.prefixClass('collapse');
 
     return (
-      <div
-        className={classNames(this.getCollapsibleClassSet(collapseClass))}
-        id={this.props.id}
-        ref='panel'
-        aria-expanded={this.isExpanded() ? 'true' : 'false'}>
-        {this.renderBody()}
-      </div>
+        <div
+            className={classNames(this.getCollapsibleClassSet(collapseClass))}
+            id={this.props.id}
+            ref='panel'
+            aria-expanded={this.isExpanded() ? 'true' : 'false'}>
+          {this.renderBody()}
+        </div>
     );
   },
 
@@ -95,9 +95,9 @@ const Panel = React.createClass({
 
     function addPanelBody (children) {
       bodyElements.push(
-        <div className={bodyClass} {...getProps()}>
-          {children}
-        </div>
+          <div className={bodyClass} {...getProps()}>
+            {children}
+          </div>
       );
     }
 
@@ -149,10 +149,10 @@ const Panel = React.createClass({
 
     if (!React.isValidElement(header) || Array.isArray(header)) {
       header = this.props.collapsible ?
-        this.renderCollapsibleTitle(header) : header;
+          this.renderCollapsibleTitle(header) : header;
     } else {
       const className = classNames(
-        this.prefixClass('title'), header.props.className
+          this.prefixClass('title'), header.props.className
       );
 
       if (this.props.collapsible) {
@@ -166,29 +166,30 @@ const Panel = React.createClass({
     }
 
     return (
-      <div className={this.prefixClass('heading')}>
-        {header}
-      </div>
+        <div className={this.prefixClass('heading')}>
+          {header}
+        </div>
     );
   },
 
   renderAnchor(header) {
     return (
-      <a
-        href={'#' + (this.props.id || '')}
-        className={this.isExpanded() ? null : 'collapsed'}
-        aria-expanded={this.isExpanded() ? 'true' : 'false'}
-        onClick={this.handleSelect}>
-        {header}
-      </a>
+        <a
+            href={'#' + (this.props.id || '')}
+            aria-controls={this.props.collapsible ? this.props.id : null}
+            className={this.isExpanded() ? null : 'collapsed'}
+            aria-expanded={this.isExpanded() ? 'true' : 'false'}
+            onClick={this.handleSelect}>
+          {header}
+        </a>
     );
   },
 
   renderCollapsibleTitle(header) {
     return (
-      <h4 className={this.prefixClass('title')}>
-        {this.renderAnchor(header)}
-      </h4>
+        <h4 className={this.prefixClass('title')}>
+          {this.renderAnchor(header)}
+        </h4>
     );
   },
 
@@ -198,9 +199,9 @@ const Panel = React.createClass({
     }
 
     return (
-      <div className={this.prefixClass('footer')}>
-        {this.props.footer}
-      </div>
+        <div className={this.prefixClass('footer')}>
+          {this.props.footer}
+        </div>
     );
   }
 });
