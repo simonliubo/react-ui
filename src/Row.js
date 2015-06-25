@@ -1,9 +1,10 @@
 import React from 'react';
 import classNames from 'classnames';
+import CustomPropTypes from './utils/CustomPropTypes';
 
 const Row = React.createClass({
   propTypes: {
-    componentClass: React.PropTypes.node.isRequired
+    componentClass: CustomPropTypes.elementType
   },
 
   getDefaultProps() {
@@ -16,9 +17,9 @@ const Row = React.createClass({
     let ComponentClass = this.props.componentClass;
 
     return (
-      <ComponentClass {...this.props} className={classNames(this.props.className, 'row')}>
-        {this.props.children}
-      </ComponentClass>
+        <ComponentClass {...this.props} className={classNames(this.props.className, 'row')}>
+          {this.props.children}
+        </ComponentClass>
     );
   }
 });

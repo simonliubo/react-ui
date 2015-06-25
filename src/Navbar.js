@@ -4,6 +4,7 @@ import classNames from 'classnames';
 
 import ValidComponentChildren from './utils/ValidComponentChildren';
 import createChainedFunction from './utils/createChainedFunction';
+import CustomPropTypes from './utils/CustomPropTypes';
 
 const Navbar = React.createClass({
   mixins: [BootstrapMixin],
@@ -15,7 +16,7 @@ const Navbar = React.createClass({
     inverse: React.PropTypes.bool,
     fluid: React.PropTypes.bool,
     role: React.PropTypes.string,
-    componentClass: React.PropTypes.node.isRequired,
+    componentClass: CustomPropTypes.elementType,
     brand: React.PropTypes.node,
     toggleButton: React.PropTypes.node,
     toggleNavKey: React.PropTypes.oneOfType([
@@ -73,12 +74,12 @@ const Navbar = React.createClass({
     classes['navbar-inverse'] = this.props.inverse;
 
     return (
-      <ComponentClass {...this.props} className={classNames(this.props.className, classes)}>
-        <div className={this.props.fluid ? 'container-fluid' : 'container'}>
-          {(this.props.brand || this.props.toggleButton || this.props.toggleNavKey != null) ? this.renderHeader() : null}
-          {ValidComponentChildren.map(this.props.children, this.renderChild)}
-        </div>
-      </ComponentClass>
+        <ComponentClass {...this.props} className={classNames(this.props.className, classes)}>
+          <div className={this.props.fluid ? 'container-fluid' : 'container'}>
+            {(this.props.brand || this.props.toggleButton || this.props.toggleNavKey != null) ? this.renderHeader() : null}
+            {ValidComponentChildren.map(this.props.children, this.renderChild)}
+          </div>
+        </ComponentClass>
     );
   },
 
@@ -105,10 +106,10 @@ const Navbar = React.createClass({
     }
 
     return (
-      <div className="navbar-header">
-        {brand}
-        {(this.props.toggleButton || this.props.toggleNavKey != null) ? this.renderToggleButton() : null}
-      </div>
+        <div className="navbar-header">
+          {brand}
+          {(this.props.toggleButton || this.props.toggleNavKey != null) ? this.renderToggleButton() : null}
+        </div>
     );
   },
 
@@ -124,17 +125,17 @@ const Navbar = React.createClass({
     }
 
     children = (this.props.toggleButton != null) ?
-      this.props.toggleButton : [
-        <span className="sr-only" key={0}>Toggle navigation</span>,
-        <span className="icon-bar" key={1}></span>,
-        <span className="icon-bar" key={2}></span>,
-        <span className="icon-bar" key={3}></span>
+        this.props.toggleButton : [
+      <span className="sr-only" key={0}>Toggle navigation</span>,
+      <span className="icon-bar" key={1}></span>,
+      <span className="icon-bar" key={2}></span>,
+      <span className="icon-bar" key={3}></span>
     ];
 
     return (
-      <button className="navbar-toggle" type="button" onClick={this.handleToggle}>
-        {children}
-      </button>
+        <button className="navbar-toggle" type="button" onClick={this.handleToggle}>
+          {children}
+        </button>
     );
   }
 });

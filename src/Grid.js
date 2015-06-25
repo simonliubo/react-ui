@@ -1,10 +1,11 @@
 import React from 'react';
 import classNames from 'classnames';
+import CustomPropTypes from './utils/CustomPropTypes';
 
 const Grid = React.createClass({
   propTypes: {
     fluid: React.PropTypes.bool,
-    componentClass: React.PropTypes.node.isRequired
+    componentClass: CustomPropTypes.elementType
   },
 
   getDefaultProps() {
@@ -18,11 +19,11 @@ const Grid = React.createClass({
     let className = this.props.fluid ? 'container-fluid' : 'container';
 
     return (
-      <ComponentClass
-        {...this.props}
-        className={classNames(this.props.className, className)}>
-        {this.props.children}
-      </ComponentClass>
+        <ComponentClass
+            {...this.props}
+            className={classNames(this.props.className, className)}>
+          {this.props.children}
+        </ComponentClass>
     );
   }
 });
