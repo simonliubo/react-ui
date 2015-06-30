@@ -7,9 +7,9 @@ describe('Modal', function () {
   it('Should render the modal content', function() {
     let noOp = function () {};
     let instance = ReactTestUtils.renderIntoDocument(
-      <Modal onRequestHide={noOp}>
-        <strong>Message</strong>
-      </Modal>
+        <Modal onRequestHide={noOp}>
+          <strong>Message</strong>
+        </Modal>
     );
     assert.ok(ReactTestUtils.findRenderedDOMComponentWithTag(instance, 'strong'));
   });
@@ -26,9 +26,9 @@ describe('Modal', function () {
       render() {
         if (this.state.modalOpen) {
           return (
-            <Modal onRequestHide={this.handleCloseModal} container={this}>
-              <strong>Message</strong>
-            </Modal>
+              <Modal onRequestHide={this.handleCloseModal} container={this}>
+                <strong>Message</strong>
+              </Modal>
           );
         } else {
           return <span/>;
@@ -38,12 +38,12 @@ describe('Modal', function () {
     let instance = ReactTestUtils.renderIntoDocument(
         <Container />
     );
-    assert.ok(instance.getDOMNode().className.match(/\modal-open\b/));
+    assert.ok(React.findDOMNode(instance).className.match(/\modal-open\b/));
 
-    let backdrop = instance.getDOMNode().getElementsByClassName('modal-backdrop')[0];
+    let backdrop = React.findDOMNode(instance).getElementsByClassName('modal-backdrop')[0];
     ReactTestUtils.Simulate.click(backdrop);
     setTimeout(function(){
-      assert.equal(instance.getDOMNode().className.length, 0);
+      assert.equal(React.findDOMNode(instance).className.length, 0);
       done();
     }, 0);
 
@@ -52,45 +52,45 @@ describe('Modal', function () {
   it('Should close the modal when the backdrop is clicked', function (done) {
     let doneOp = function () { done(); };
     let instance = ReactTestUtils.renderIntoDocument(
-      <Modal onRequestHide={doneOp}>
-        <strong>Message</strong>
-      </Modal>
+        <Modal onRequestHide={doneOp}>
+          <strong>Message</strong>
+        </Modal>
     );
 
-    let backdrop = instance.getDOMNode().getElementsByClassName('modal-backdrop')[0];
+    let backdrop = React.findDOMNode(instance).getElementsByClassName('modal-backdrop')[0];
     ReactTestUtils.Simulate.click(backdrop);
   });
 
   it('Should close the modal when the modal background is clicked', function (done) {
     let doneOp = function () { done(); };
     let instance = ReactTestUtils.renderIntoDocument(
-      <Modal onRequestHide={doneOp}>
-        <strong>Message</strong>
-      </Modal>
+        <Modal onRequestHide={doneOp}>
+          <strong>Message</strong>
+        </Modal>
     );
 
-    let backdrop = instance.getDOMNode().getElementsByClassName('modal')[0];
+    let backdrop = React.findDOMNode(instance).getElementsByClassName('modal')[0];
     ReactTestUtils.Simulate.click(backdrop);
   });
 
   it('Should pass bsSize to the dialog', function () {
     let noOp = function () {};
     let instance = ReactTestUtils.renderIntoDocument(
-      <Modal bsSize='small' onRequestHide={noOp}>
-        <strong>Message</strong>
-      </Modal>
+        <Modal bsSize='small' onRequestHide={noOp}>
+          <strong>Message</strong>
+        </Modal>
     );
 
-    let dialog = instance.getDOMNode().getElementsByClassName('modal-dialog')[0];
+    let dialog = React.findDOMNode(instance).getElementsByClassName('modal-dialog')[0];
     assert.ok(dialog.className.match(/\bmodal-sm\b/));
   });
 
   it('Should pass dialogClassName to the dialog', function () {
     let noOp = function () {};
     let instance = ReactTestUtils.renderIntoDocument(
-      <Modal dialogClassName="testCss" onRequestHide={noOp}>
-        <strong>Message</strong>
-      </Modal>
+        <Modal dialogClassName="testCss" onRequestHide={noOp}>
+          <strong>Message</strong>
+        </Modal>
     );
 
     let dialog = ReactTestUtils.findRenderedDOMComponentWithClass(instance, 'modal-dialog');
@@ -133,9 +133,9 @@ describe('Modal', function () {
         render() {
           if (this.state.modalOpen) {
             return (
-              <Modal onRequestHide={this.handleCloseModal} container={this}>
-                <strong>Message</strong>
-              </Modal>
+                <Modal onRequestHide={this.handleCloseModal} container={this}>
+                  <strong>Message</strong>
+                </Modal>
             );
           } else {
             return <span/>;
@@ -147,15 +147,77 @@ describe('Modal', function () {
 
       setTimeout(function () {
         // modal should be focused when opened
-        let modal = instance.getDOMNode().getElementsByClassName('modal')[0];
+        let modal = React.findDOMNode(instance).getElementsByClassName('modal')[0];
         document.activeElement.should.equal(modal);
 
         // close the modal
-        let backdrop = instance.getDOMNode().getElementsByClassName('modal-backdrop')[0];
+        let backdrop = React.findDOMNode(instance).getElementsByClassName('modal-backdrop')[0];
         ReactTestUtils.Simulate.click(backdrop);
       }, 0);
     });
 
+    it('Should not focus on the Modal when autoFocus is false', function (done) {
+
+      document.activeElement.should.equal(focusableContainer);
+
+      let Container = React.createClass({
+        getInitialState() {
+          return {modalOpen: true};
+        },
+        render() {
+          if (this.state.modalOpen) {
+            return (
+                <Modal autoFocus={false} onRequestHide={()=>{}} container={this}>
+                  <strong>Message</strong>
+                </Modal>
+            );
+          } else {
+            return <span/>;
+          }
+        }
+      });
+
+      React.render(<Container />, focusableContainer);
+
+      setTimeout(function () {
+        // modal should be focused when opened
+        document.activeElement.should.equal(focusableContainer);
+        done();
+      }, 0);
+    });
+
+    it('Should not focus Modal when child has focus', function (done) {
+
+      document.activeElement.should.equal(focusableContainer);
+
+      let Container = React.createClass({
+        getInitialState() {
+          return {modalOpen: true};
+        },
+        render() {
+          if (this.state.modalOpen) {
+            return (
+                <Modal onRequestHide={()=>{}} container={this}>
+                  <input autoFocus />
+                </Modal>
+            );
+          } else {
+            return <span/>;
+          }
+        }
+      });
+
+      let instance = React.render(<Container />, focusableContainer);
+
+      setTimeout(function () {
+        let input = React.findDOMNode(
+            ReactTestUtils.findRenderedDOMComponentWithTag(instance, 'input'));
+
+        document.activeElement.should.equal(input);
+        done();
+      }, 0);
+    });
   });
+
 
 });

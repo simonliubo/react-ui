@@ -31,9 +31,16 @@ function getContainer(context){
       domUtils.ownerDocument(context).body;
 }
 
+
+
+let currentFocusListener;
+
 /**
  * Firefox doesn't have a focusin event so using capture is easiest way to get bubbling
  * IE8 can't do addEventListener, but does have onfocusin, so we use that in ie8
+ *
+ * We only allow one Listener at a time to avoid stack overflows
+ *
  * @param  {ReactElement|HTMLElement} context
  * @param  {Function} handler
  */
@@ -42,6 +49,10 @@ function onFocus(context, handler) {
   let useFocusin = !doc.addEventListener;
   let remove;
 
+  if ( currentFocusListener ) {
+    currentFocusListener.remove();
+  }
+
   if (useFocusin) {
     document.attachEvent('onfocusin', handler);
     remove = () => document.detachEvent('onfocusin', handler);
@@ -49,7 +60,10 @@ function onFocus(context, handler) {
     document.addEventListener('focus', handler, true);
     remove = () => document.removeEventListener('focus', handler, true);
   }
-  return { remove };
+
+  currentFocusListener = { remove };
+
+  return currentFocusListener;
 }
 
 let scrollbarSize;
@@ -88,6 +102,7 @@ const Modal = React.createClass({
     animation: React.PropTypes.bool,
     onRequestHide: React.PropTypes.func.isRequired,
     dialogClassName: React.PropTypes.string,
+    autoFocus: React.PropTypes.bool,
     enforceFocus: React.PropTypes.bool
   },
 
@@ -98,6 +113,8 @@ const Modal = React.createClass({
       keyboard: true,
       animation: true,
       closeButton: true,
+
+      autoFocus: true,
       enforceFocus: true
     };
   },
@@ -192,6 +209,10 @@ iosClickHack() {
   React.findDOMNode(this.refs.backdrop).onclick = function () {};
 },
 
+componentWillMount(){
+  this.checkForFocus();
+},
+
 componentDidMount() {
   const doc = domUtils.ownerDocument(this);
   const win = domUtils.ownerWindow(this);
@@ -273,11 +294,23 @@ handleWindowResize() {
   this.setState(this._getStyles());
 },
 
-focusModalContent () {
-  if (this.props.enforceFocus) {
-    this.lastFocus = domUtils.activeElement(this);
+checkForFocus(){
+  if ( domUtils.canUseDom ) {
+    try {
+      this.lastFocus = document.activeElement;
+    }
+    catch (e) {} // eslint-disable-line no-empty
+  }
+},
 
-    let modalContent = React.findDOMNode(this.refs.modal);
+focusModalContent () {
+  let modalContent = React.findDOMNode(this.refs.modal);
+  let current = domUtils.activeElement(this);
+  let focusInModal = current && domUtils.contains(modalContent, current);
+
+  if (this.props.autoFocus && !focusInModal) {
+    this.lastFocus = current;
+
     modalContent.focus();
   }
 },
