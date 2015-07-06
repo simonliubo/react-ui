@@ -5,71 +5,47 @@
         <title>北森测评在线考试</title>
         <meta name="description" content="">
         <meta name="HandheldFriendly" content="True">
+        <link href="test/star.css" rel="stylesheet">
+        <link href="test/fireworks.css" rel="stylesheet">
     </head>
     <body>
+        <!-- Hiding library elements in the DOM is fun -->
+        <aside id="library" class="stars">
+            <img src="test/nightsky.png" id="nightsky" />
+            <img src="test/big-glow.png" id="big-glow" />
+            <img src="test/small-glow.png" id="small-glow" />
+        </aside>
 
-        <video id="mvideo"
-               poster="loading5.gif"
-               width="400px"
-               heigt="400px">
-            <!--<source src="https://examvideo4test.blob.core.chinacloudapi.cn/examvideo4test/177853448.webm" type="video/webm">-->
-        </video>
 
-        <audio id="maudio">
-            <!--<source-->
-            <!--src="https://examvideo4test.blob.core.chinacloudapi.cn/examvideo4test/144652066.wav">-->
-        </audio>
+        <script src="test/requestanimframe.js"></script>
+        <script src="test/fireworks.js"></script>
+    <!--<script>-->
+        <!--function drawing() {-->
+            <!--var c = document.getElementById('sky');-->
+            <!--var ctx = c.getContext('2d');-->
+            <!--var xMax = c.width = window.screen.availWidth;-->
+            <!--var yMax = c.height = window.screen.availHeight;-->
 
-        <script src="http://lib.sinaapp.com/js/jquery/1.10/jquery-1.10.0.min.js"></script>
-        <script>
-            var Mvideo = document.getElementById("mvideo");
-            var Maudio = document.getElementById("maudio");
-            var mPlay = $.Deferred(), aPlay = $.Deferred();
-            Maudio.addEventListener("canplaythrough", function(){
-                aPlay.resolve();
-            },false);
-            Mvideo.addEventListener("canplaythrough", function(){
-                mPlay.resolve();
-            }, false);
-            Maudio.addEventListener("play", function(){
-                Mvideo.play();
-            });
-            Maudio.addEventListener("ended", function(){
-                Maudio.currentTime = 0.1;
-                Mvideo.currentTime = 0.1;
-            },false);
-            function waitVideo(){
-                return mPlay;
-            }
-            function waitAudio(){
-                return aPlay;
-            }
+            <!--var hmTimes = Math.round(xMax + yMax);-->
 
-            $.when(waitVideo(), waitAudio())
-                    .done(function(){
+            <!--for(var i=0; i<=hmTimes; i++) {-->
+                <!--var randomX = Math.floor((Math.random()*xMax)+1);-->
+                <!--var randomY = Math.floor((Math.random()*yMax)+1);-->
+                <!--var randomSize = Math.floor((Math.random()*2)+1);-->
+                <!--var randomOpacityOne = Math.floor((Math.random()*9)+1);-->
+                <!--var randomOpacityTwo = Math.floor((Math.random()*9)+1);-->
+                <!--var randomHue = Math.floor((Math.random()*360)+1);-->
+                <!--if(randomSize>1) {-->
+                    <!--ctx.shadowBlur = Math.floor((Math.random()*15)+5);-->
+                    <!--ctx.shadowColor = "white";-->
+                <!--}-->
+                <!--ctx.fillStyle = "hsla("+randomHue+", 30%, 80%, ."+randomOpacityOne+randomOpacityTwo+")";-->
+                <!--ctx.fillRect(randomX, randomY, randomSize, randomSize);-->
+            <!--}-->
 
-                        if(checkState()){
-                            console.log(2222);
-                            Maudio.controls = true;
-                            Maudio.currentTime = 0.1;
-                            Mvideo.currentTime = 0.1;
-                        }
-                    })
-                    .fail(function(){ alert("出错啦！"); });
+        <!--}-->
+        <!--drawing();-->
 
-            Maudio.type = "audio/Wav";
-            Maudio.src = "https://examvideo4test.blob.core.chinacloudapi.cn/examvideo4test/144652066.wav";
-            Maudio.controls = true;
-            Mvideo.type = "video/webm";
-            Mvideo.src = "https://examvideo4test.blob.core.chinacloudapi.cn/examvideo4test/177853448.webm";
-
-            //检查状态
-            function checkState(obj){
-                return (Maudio.readyState != 0 && Maudio.readyState != 0);
-            }
-
-        </script>
-        <!--<script src="css.js"></script>-->
-        <!--<script src="app.js"></script>-->
+    <!--</script>-->
     </body>
 </html>

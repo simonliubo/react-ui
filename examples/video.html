@@ -1,0 +1,78 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <title>北森测评在线考试</title>
+        <meta name="description" content="">
+        <meta name="HandheldFriendly" content="True">
+    </head>
+    <body>
+
+        <video id="mvideo"
+               poster="loading5.gif"
+               width="400px"
+               heigt="400px">
+            <!--<source src="https://examvideo4test.blob.core.chinacloudapi.cn/examvideo4test/177853448.webm" type="video/webm">-->
+        </video>
+
+        <audio id="maudio">
+            <!--<source-->
+            <!--src="https://examvideo4test.blob.core.chinacloudapi.cn/examvideo4test/144652066.wav">-->
+        </audio>
+
+        <script src="http://lib.sinaapp.com/js/jquery/1.10/jquery-1.10.0.min.js"></script>
+        <script>
+            //myAudio = new Audio('someSound.ogg');
+            var Mvideo = document.getElementById("mvideo");
+            var Maudio = document.getElementById("maudio");
+            var mPlay = $.Deferred(), aPlay = $.Deferred();
+            Maudio.addEventListener("canplaythrough", function(){
+                aPlay.resolve();
+            },false);
+            Mvideo.addEventListener("canplaythrough", function(){
+                mPlay.resolve();
+            }, false);
+            Maudio.addEventListener("play", function(){
+                Mvideo.play();
+            });
+            Maudio.addEventListener("ended", function(){
+
+                console.log(Mvideo.duration);
+                Maudio.currentTime = 0.1;
+                Mvideo.currentTime = 0.1;
+            },false);
+            function waitVideo(){
+                return mPlay;
+            }
+            function waitAudio(){
+                return aPlay;
+            }
+
+            $.when(waitVideo(), waitAudio())
+                    .done(function(){
+
+                        if(checkState()){
+                            console.log(2222);
+                            Maudio.controls = true;
+                            Maudio.currentTime = 0.1;
+                            Mvideo.currentTime = 0.1;
+                        }
+                    })
+                    .fail(function(){ alert("出错啦！"); });
+
+            Maudio.type = "audio/Wav";
+            Maudio.src = "https://examvideo4test.blob.core.chinacloudapi.cn/examvideo4test/144652066.wav";
+            Maudio.controls = true;
+            Mvideo.type = "video/webm";
+            Mvideo.src = "https://examvideo4test.blob.core.chinacloudapi.cn/examvideo4test/177853448.webm";
+
+            //检查状态
+            function checkState(obj){
+                return (Maudio.readyState != 0 && Maudio.readyState != 0);
+            }
+
+        </script>
+        <!--<script src="css.js"></script>-->
+        <!--<script src="app.js"></script>-->
+    </body>
+</html>
