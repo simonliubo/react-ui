@@ -22,14 +22,14 @@ class Position extends React.Component {
         this._needsFlush = true;
     }
 
-    componentWillRecieveProps(){
+    componentWillReceiveProps(){
         this._needsFlush = true;
     }
 
     componentDidMount(){
         this._maybeUpdatePosition();
     }
-    componentDidUpate(){
+    componentDidUpdate(){
         this._maybeUpdatePosition();
     }
 
