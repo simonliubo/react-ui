@@ -9,10 +9,10 @@ let executionOptions = {
 
 function logWithPrefix(prefix, message) {
   console.log(
-      message.toString().trim()
-          .split('\n')
-          .map((line) => `${prefix.grey} ${line}`)
-          .join('\n')
+    message.toString().trim()
+    .split('\n')
+    .map((line) => `${prefix.grey} ${line}`)
+    .join('\n')
   );
 }
 
@@ -29,10 +29,10 @@ function execWrapper(command, options = {}) {
     stdout.on('data', data => output(data, 'stdout'));
     stderr.on('data', data => output(data, 'stderr'));
   })
-      .then(result => {
-        logWithPrefix(`[${title}]`, 'Complete'.cyan);
-        return result;
-      });
+  .then(result => {
+    logWithPrefix(`[${title}]`, 'Complete'.cyan);
+    return result;
+  });
 }
 
 function safeExec(command, options = {}) {

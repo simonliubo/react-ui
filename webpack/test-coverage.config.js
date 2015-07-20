@@ -1,6 +1,3 @@
-/**
- * Created by liubo on 15/6/19.
- */
 import _ from 'lodash';
 import path from 'path';
 import { jsLoader } from './base.config';

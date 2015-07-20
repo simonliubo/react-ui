@@ -9,12 +9,11 @@
   ],
   "keywords": [
     <%= _.map(pkg.keywords, function(keyword) { return '"' + keyword + '"' }).join(',\n    ')%>
-],
-"ignore": [
-"**/.*"
-],
-"dependencies": {
-"classnames": "<%= pkg.dependencies.classnames %>",
-"react": "<%= pkg.peerDependencies.react %>"
-}
+  ],
+  "ignore": [
+    "**/.*"
+  ],
+  "dependencies": {
+    "react": "<%= pkg.peerDependencies.react %>"
+  }
 }

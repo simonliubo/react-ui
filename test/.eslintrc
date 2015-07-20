@@ -1,21 +1,59 @@
 {
-  "env": {
-    "mocha": true
+  "rules": {
+    "no-alert": 0,
+    "react/react-in-jsx-scope": 0
   },
   "globals": {
-    "assert": true,
-    "expect": true,
-    "sinon": true
-  },
-  "plugins": [
-    "mocha"
-  ],
-  "rules": {
-    "no-script-url": 0,
-    "no-unused-expressions": 0,
-    "react/jsx-boolean-value": 0,
-    "react/no-multi-comp": 0,
-    "react/prop-types": 0,
-    "mocha/no-exclusive-tests": 2
+    "mountNode",
+    "React",
+    "classNames",
+    "Accordion",
+    "Alert",
+    "Badge",
+    "Button",
+    "ButtonGroup",
+    "ButtonInput",
+    "ButtonToolbar",
+    "CollapsibleNav",
+    "CollapsibleMixin",
+    "Carousel",
+    "CarouselItem",
+    "Col",
+    "DropdownButton",
+    "FormControls",
+    "Glyphicon",
+    "Grid",
+    "Input",
+    "Jumbotron",
+    "Label",
+    "ListGroup",
+    "ListGroupItem",
+    "Nav",
+    "Navbar",
+    "NavItem",
+    "MenuItem",
+    "Modal",
+    "ModalTrigger",
+    "OverlayTrigger",
+    "OverlayMixin",
+    "Overlay",
+    "PageHeader",
+    "PageItem",
+    "Pager",
+    "Pagination",
+    "Panel",
+    "PanelGroup",
+    "Popover",
+    "ProgressBar",
+    "Row",
+    "SplitButton",
+    "TabbedArea",
+    "Table",
+    "TabPane",
+    "Tooltip",
+    "Well",
+    "Thumbnail",
+    "Collapse",
+    "Fade"
   }
 }
