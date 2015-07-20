@@ -1,6 +1,3 @@
-/**
- * Created by liubo on 15/7/1.
- */
 import React, { cloneElement } from 'react';
 import domUtils from './utils/domUtils';
 import { calcOverlayPosition } from './utils/overlayPositionUtils';
@@ -8,97 +5,98 @@ import CustomPropTypes from './utils/CustomPropTypes';
 
 class Position extends React.Component {
 
-    constructor(props, context){
-        super(props, context);
-        this.state = {
-            positionLeft: null,
-            positionTop: null,
-            arrowOffsetLeft: null,
-            arrowOffsetTop: null
-        };
-    }
+  constructor(props, context){
+    super(props, context);
+    this.state = {
+      positionLeft: null,
+      positionTop: null,
+      arrowOffsetLeft: null,
+      arrowOffsetTop: null
+    };
+  }
 
-    componentWillMount(){
-        this._needsFlush = true;
-    }
+  componentWillMount(){
+    this._needsFlush = true;
+  }
 
-    componentWillReceiveProps(){
-        this._needsFlush = true;
-    }
+  componentWillReceiveProps(){
+    this._needsFlush = true;
+  }
 
-    componentDidMount(){
-        this._maybeUpdatePosition();
-    }
-    componentDidUpdate(){
-        this._maybeUpdatePosition();
-    }
+  componentDidMount(){
+    this._maybeUpdatePosition();
+  }
+  componentDidUpdate(){
+    this._maybeUpdatePosition();
+  }
 
-    render() {
-        let { placement, children } = this.props;
-        let { positionLeft, positionTop, ...arrows } = this.props.target ? this.state : {};
+  render() {
+    let { children, ...props } = this.props;
+    let { positionLeft, positionTop, ...arrows } = this.props.target ? this.state : {};
 
-        return cloneElement(
-            React.Children.only(children), {
-                ...arrows,
-                placement,
-                positionTop,
-                positionLeft,
-                style: {
-                    ...children.props.style,
-                left: positionLeft,
-                top: positionTop
-            }
-    }
-);
-}
+    return cloneElement(
+      React.Children.only(children), {
+        ...props,
+        ...arrows,
+        positionTop,
+        positionLeft,
+        style: {
+          ...children.props.style,
+          left: positionLeft,
+          top: positionTop
+        }
+      }
+    );
+  }
 
-_maybeUpdatePosition(){
+  _maybeUpdatePosition(){
     if ( this._needsFlush ) {
-        this._needsFlush = false;
-        this._updatePosition();
+      this._needsFlush = false;
+      this._updatePosition();
     }
-}
+  }
 
-_updatePosition() {
+  _updatePosition() {
     if ( this.props.target == null ){
-        return;
+      return;
     }
 
+    let overlay = React.findDOMNode(this);
     let target = React.findDOMNode(this.props.target(this.props));
     let container = React.findDOMNode(this.props.container) || domUtils.ownerDocument(this).body;
 
     this.setState(
-        calcOverlayPosition(
-            this.props.placement
-            , React.findDOMNode(this)
-            , target
-            , container
-            , this.props.containerPadding));
-}
+      calcOverlayPosition(
+          this.props.placement
+        , overlay
+        , target
+        , container
+        , this.props.containerPadding));
+  }
 }
 
 Position.propTypes = {
-    /**
-     * The target DOM node the Component is positioned next too.
-     */
-    target:           React.PropTypes.func,
-    /**
-     * The "offsetParent" of the Component
-     */
-    container:        CustomPropTypes.mountable,
-    /**
-     * Distance in pixels the Component should be positioned to the edge of the Container.
-     */
-    containerPadding: React.PropTypes.number,
-    /**
-     * The location that the overlay should be positioned to its target.
-     */
-    placement:        React.PropTypes.oneOf(['top', 'right', 'bottom', 'left'])
+  /**
+   * The target DOM node the Component is positioned next too.
+   */
+  target:           React.PropTypes.func,
+  /**
+   * The "offsetParent" of the Component
+   */
+  container:        CustomPropTypes.mountable,
+  /**
+   * Distance in pixels the Component should be positioned to the edge of the Container.
+   */
+  containerPadding: React.PropTypes.number,
+  /**
+   * The location that the overlay should be positioned to its target.
+   */
+  placement:        React.PropTypes.oneOf(['top', 'right', 'bottom', 'left'])
 };
 
 Position.defaultProps = {
-    containerPadding: 0,
-    placement:        'right'
+  containerPadding: 0,
+  placement:        'right'
 };
 
 

@@ -2,9 +2,9 @@ import React from 'react';
 
 
 let canUseDom = !!(
-typeof window !== 'undefined' &&
-window.document &&
-window.document.createElement
+  typeof window !== 'undefined' &&
+  window.document &&
+  window.document.createElement
 );
 
 
@@ -22,8 +22,8 @@ function ownerDocument(componentOrElement) {
 function ownerWindow(componentOrElement) {
   let doc = ownerDocument(componentOrElement);
   return doc.defaultView
-      ? doc.defaultView
-      : doc.parentWindow;
+       ? doc.defaultView
+       : doc.parentWindow;
 }
 
 /**
@@ -148,7 +148,7 @@ function offsetParentFunc(elem) {
   let offsetParent = elem.offsetParent || docElem;
 
   while ( offsetParent && ( offsetParent.nodeName !== 'HTML' &&
-  getComputedStyles(offsetParent).position === 'static' ) ) {
+    getComputedStyles(offsetParent).position === 'static' ) ) {
     offsetParent = offsetParent.offsetParent;
   }
 
@@ -175,8 +175,8 @@ function contains(elem, inner){
   return (elem && elem.contains)
       ? elem.contains(inner)
       : (elem && elem.compareDocumentPosition)
-      ? elem === inner || !!(elem.compareDocumentPosition(inner) & 16)
-      : ie8Contains(elem, inner);
+          ? elem === inner || !!(elem.compareDocumentPosition(inner) & 16)
+          : ie8Contains(elem, inner);
 }
 
 export default {

@@ -36,15 +36,15 @@ const PanelGroup = React.createClass({
   render() {
     let classes = this.getBsClassSet();
     return (
-        <div {...this.props} className={classNames(this.props.className, classes)} onSelect={null}>
-          {ValidComponentChildren.map(this.props.children, this.renderPanel)}
-        </div>
+      <div {...this.props} className={classNames(this.props.className, classes)} onSelect={null}>
+        {ValidComponentChildren.map(this.props.children, this.renderPanel)}
+      </div>
     );
   },
 
   renderPanel(child, index) {
     let activeKey =
-        this.props.activeKey != null ? this.props.activeKey : this.state.activeKey;
+      this.props.activeKey != null ? this.props.activeKey : this.state.activeKey;
 
     let props = {
       bsStyle: child.props.bsStyle || this.props.bsStyle,
@@ -59,8 +59,8 @@ const PanelGroup = React.createClass({
     }
 
     return cloneElement(
-        child,
-        props
+      child,
+      props
     );
   },
 

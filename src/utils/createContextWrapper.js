@@ -22,26 +22,26 @@ export default function createContextWrapper(Trigger, propName) {
     class TriggerWithContext {
       render() {
         const props = {...this.props};
-      props[propName] = this.getWrappedOverlay();
+        props[propName] = this.getWrappedOverlay();
 
-      return (
-    <Trigger {...props}>
-    {this.props.children}
-    </Trigger>
-    );
-    }
+        return (
+          <Trigger {...props}>
+            {this.props.children}
+          </Trigger>
+        );
+      }
 
-    getWrappedOverlay() {
-      return (
+      getWrappedOverlay() {
+        return (
           <ContextWrapper
-              context={this.context}
-              wrapped={this.props[propName]}
-              />
-      );
+            context={this.context}
+            wrapped={this.props[propName]}
+          />
+        );
+      }
     }
-  }
-  TriggerWithContext.contextTypes = contextTypes;
+    TriggerWithContext.contextTypes = contextTypes;
 
-  return TriggerWithContext;
-};
+    return TriggerWithContext;
+  };
 }

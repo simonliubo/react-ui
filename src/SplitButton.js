@@ -35,52 +35,52 @@ const SplitButton = React.createClass({
 
   render() {
     let groupClasses = {
-      'open': this.state.open,
-      'dropup': this.props.dropup
-    };
+        'open': this.state.open,
+        'dropup': this.props.dropup
+      };
 
     let button = (
-        <Button
-            {...this.props}
-            ref="button"
-            onClick={this.handleButtonClick}
-            title={null}
-            id={null}>
-          {this.props.title}
-        </Button>
+      <Button
+        {...this.props}
+        ref="button"
+        onClick={this.handleButtonClick}
+        title={null}
+        id={null}>
+        {this.props.title}
+      </Button>
     );
 
     let dropdownButton = (
-        <Button
-            {...this.props}
-            ref="dropdownButton"
-            className={classNames(this.props.className, 'dropdown-toggle')}
-            onClick={this.handleDropdownClick}
-            title={null}
-            href={null}
-            target={null}
-            id={null}>
-          <span className="sr-only">{this.props.dropdownTitle}</span>
-          <span className="caret" />
-          <span style={{letterSpacing: '-.3em'}}>&nbsp;</span>
-        </Button>
+      <Button
+        {...this.props}
+        ref="dropdownButton"
+        className={classNames(this.props.className, 'dropdown-toggle')}
+        onClick={this.handleDropdownClick}
+        title={null}
+        href={null}
+        target={null}
+        id={null}>
+        <span className="sr-only">{this.props.dropdownTitle}</span>
+        <span className="caret" />
+        <span style={{letterSpacing: '-.3em'}}>&nbsp;</span>
+      </Button>
     );
 
     return (
-        <ButtonGroup
-            bsSize={this.props.bsSize}
-            className={classNames(groupClasses)}
-            id={this.props.id}>
-          {button}
-          {dropdownButton}
-          <DropdownMenu
-              ref="menu"
-              onSelect={this.handleOptionSelect}
-              aria-labelledby={this.props.id}
-              pullRight={this.props.pullRight}>
-            {this.props.children}
-          </DropdownMenu>
-        </ButtonGroup>
+      <ButtonGroup
+        bsSize={this.props.bsSize}
+        className={classNames(groupClasses)}
+        id={this.props.id}>
+        {button}
+        {dropdownButton}
+        <DropdownMenu
+          ref="menu"
+          onSelect={this.handleOptionSelect}
+          aria-labelledby={this.props.id}
+          pullRight={this.props.pullRight}>
+          {this.props.children}
+        </DropdownMenu>
+      </ButtonGroup>
     );
   },
 

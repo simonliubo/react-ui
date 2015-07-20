@@ -20,9 +20,9 @@ const Row = React.createClass({
     let ComponentClass = this.props.componentClass;
 
     return (
-        <ComponentClass {...this.props} className={classNames(this.props.className, 'row')}>
-          {this.props.children}
-        </ComponentClass>
+      <ComponentClass {...this.props} className={classNames(this.props.className, 'row')}>
+        {this.props.children}
+      </ComponentClass>
     );
   }
 });

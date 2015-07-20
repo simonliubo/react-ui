@@ -5,18 +5,18 @@ import Alert from '../src/Alert';
 describe('Alert', function () {
   it('Should output a alert with message', function () {
     let instance = ReactTestUtils.renderIntoDocument(
-        <Alert>
-          <strong>Message</strong>
-        </Alert>
+      <Alert>
+        <strong>Message</strong>
+      </Alert>
     );
     assert.ok(ReactTestUtils.findRenderedDOMComponentWithTag(instance, 'strong'));
   });
 
   it('Should have bsType by default', function () {
     let instance = ReactTestUtils.renderIntoDocument(
-        <Alert>
-          Message
-        </Alert>
+      <Alert>
+        Message
+      </Alert>
     );
     assert.ok(React.findDOMNode(instance).className.match(/\balert\b/));
   });
@@ -24,9 +24,9 @@ describe('Alert', function () {
   it('Should have dismissable style with onDismiss', function () {
     let noOp = function () {};
     let instance = ReactTestUtils.renderIntoDocument(
-        <Alert onDismiss={noOp}>
-          Message
-        </Alert>
+      <Alert onDismiss={noOp}>
+        Message
+      </Alert>
     );
     assert.ok(React.findDOMNode(instance).className.match(/\balert-dismissable\b/));
   });
@@ -36,9 +36,9 @@ describe('Alert', function () {
       done();
     };
     let instance = ReactTestUtils.renderIntoDocument(
-        <Alert onDismiss={doneOp}>
-          Message
-        </Alert>
+      <Alert onDismiss={doneOp}>
+        Message
+      </Alert>
     );
     ReactTestUtils.Simulate.click(React.findDOMNode(instance).children[0]);
   });
@@ -48,26 +48,26 @@ describe('Alert', function () {
       done();
     };
     ReactTestUtils.renderIntoDocument(
-        <Alert onDismiss={doneOp} dismissAfter={1}>
-          Message
-        </Alert>
+      <Alert onDismiss={doneOp} dismissAfter={1}>
+        Message
+      </Alert>
     );
   });
 
   it('Should have a default bsStyle class', function () {
     let instance = ReactTestUtils.renderIntoDocument(
-        <Alert>
-          Message
-        </Alert>
+      <Alert>
+        Message
+      </Alert>
     );
     assert.ok(React.findDOMNode(instance).className.match(/\balert-\w+\b/));
   });
 
   it('Should have use bsStyle class', function () {
     let instance = ReactTestUtils.renderIntoDocument(
-        <Alert bsStyle='danger'>
-          Message
-        </Alert>
+      <Alert bsStyle='danger'>
+        Message
+      </Alert>
     );
     assert.ok(React.findDOMNode(instance).className.match(/\balert-danger\b/));
   });
@@ -75,7 +75,7 @@ describe('Alert', function () {
   describe('Web Accessibility', function(){
     it('Should have alert role', function () {
       let instance = ReactTestUtils.renderIntoDocument(
-          <Alert>Message</Alert>
+        <Alert>Message</Alert>
       );
 
       assert.equal(React.findDOMNode(instance).getAttribute('role'), 'alert');
@@ -83,7 +83,7 @@ describe('Alert', function () {
 
     it('Should have add ARIAs to button', function () {
       let instance = ReactTestUtils.renderIntoDocument(
-          <Alert onDismiss={()=>{}} closeLabel='close'>Message</Alert>
+        <Alert onDismiss={()=>{}} closeLabel='close'>Message</Alert>
       );
 
       let button = ReactTestUtils.findRenderedDOMComponentWithTag(instance, 'button');

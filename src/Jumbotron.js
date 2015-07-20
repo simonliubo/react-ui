@@ -18,9 +18,9 @@ const Jumbotron = React.createClass({
     const ComponentClass = this.props.componentClass;
 
     return (
-        <ComponentClass {...this.props} className={classNames(this.props.className, 'jumbotron')}>
-          {this.props.children}
-        </ComponentClass>
+      <ComponentClass {...this.props} className={classNames(this.props.className, 'jumbotron')}>
+        {this.props.children}
+      </ComponentClass>
     );
   }
 });

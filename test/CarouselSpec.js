@@ -7,47 +7,47 @@ describe('Carousel', function () {
   it('Should show the correct item', function () {
 
     let instance = ReactTestUtils.renderIntoDocument(
-        <Carousel activeIndex={1}>
-          <CarouselItem ref="item1">Item 1 content</CarouselItem>
-          <CarouselItem ref="item2">Item 2 content</CarouselItem>
-        </Carousel>
+      <Carousel activeIndex={1}>
+        <CarouselItem ref="item1">Item 1 content</CarouselItem>
+        <CarouselItem ref="item2">Item 2 content</CarouselItem>
+      </Carousel>
     );
 
     assert.equal(instance.refs.item1.props.active, false);
     assert.equal(instance.refs.item2.props.active, true);
 
     instance = ReactTestUtils.renderIntoDocument(
-        <Carousel defaultActiveIndex={1}>
-          <CarouselItem ref="item1">Item 1 content</CarouselItem>
-          <CarouselItem ref="item2">Item 2 content</CarouselItem>
-        </Carousel>
+      <Carousel defaultActiveIndex={1}>
+        <CarouselItem ref="item1">Item 1 content</CarouselItem>
+        <CarouselItem ref="item2">Item 2 content</CarouselItem>
+      </Carousel>
     );
 
     assert.equal(instance.refs.item1.props.active, false);
     assert.equal(instance.refs.item2.props.active, true);
     assert.equal(
-        ReactTestUtils.scryRenderedDOMComponentsWithTag(
-            ReactTestUtils.findRenderedDOMComponentWithClass(instance, 'carousel-indicators'), 'li'
-        ).length, 2
+      ReactTestUtils.scryRenderedDOMComponentsWithTag(
+        ReactTestUtils.findRenderedDOMComponentWithClass(instance, 'carousel-indicators'), 'li'
+      ).length, 2
     );
   });
 
   it('Should handle null children', function () {
     let instance = ReactTestUtils.renderIntoDocument(
-        <Carousel activeIndex={1}>
-          <CarouselItem ref="item1">Item 1 content</CarouselItem>
-          {null}
-          {false}
-          <CarouselItem ref="item2">Item 2 content</CarouselItem>
-        </Carousel>
+      <Carousel activeIndex={1}>
+        <CarouselItem ref="item1">Item 1 content</CarouselItem>
+        {null}
+        {false}
+        <CarouselItem ref="item2">Item 2 content</CarouselItem>
+      </Carousel>
     );
 
     assert.equal(instance.refs.item1.props.active, false);
     assert.equal(instance.refs.item2.props.active, true);
     assert.equal(
-        ReactTestUtils.scryRenderedDOMComponentsWithTag(
-            ReactTestUtils.findRenderedDOMComponentWithClass(instance, 'carousel-indicators'), 'li'
-        ).length, 2
+      ReactTestUtils.scryRenderedDOMComponentsWithTag(
+        ReactTestUtils.findRenderedDOMComponentWithClass(instance, 'carousel-indicators'), 'li'
+      ).length, 2
     );
   });
 
@@ -59,25 +59,25 @@ describe('Carousel', function () {
     }
 
     let instance = ReactTestUtils.renderIntoDocument(
-        <Carousel activeIndex={1} onSelect={onSelect}>
-          <CarouselItem ref="item1">Item 1 content</CarouselItem>
-          <CarouselItem ref="item2">Item 2 content</CarouselItem>
-        </Carousel>
+      <Carousel activeIndex={1} onSelect={onSelect}>
+        <CarouselItem ref="item1">Item 1 content</CarouselItem>
+        <CarouselItem ref="item2">Item 2 content</CarouselItem>
+      </Carousel>
     );
 
     ReactTestUtils.Simulate.click(
-        ReactTestUtils.scryRenderedDOMComponentsWithTag(
-            ReactTestUtils.findRenderedDOMComponentWithClass(instance, 'carousel-indicators'), 'li'
-        )[0]
+      ReactTestUtils.scryRenderedDOMComponentsWithTag(
+        ReactTestUtils.findRenderedDOMComponentWithClass(instance, 'carousel-indicators'), 'li'
+      )[0]
     );
   });
 
   it('Should show all controls on the first/last image if wrap is true', function () {
     let instance = ReactTestUtils.renderIntoDocument(
-        <Carousel activeIndex={0} controls={true} wrap={true}>
-          <CarouselItem ref="item1">Item 1 content</CarouselItem>
-          <CarouselItem ref="item2">Item 2 content</CarouselItem>
-        </Carousel>
+      <Carousel activeIndex={0} controls={true} wrap={true}>
+        <CarouselItem ref="item1">Item 1 content</CarouselItem>
+        <CarouselItem ref="item2">Item 2 content</CarouselItem>
+      </Carousel>
     );
 
     let backButton = ReactTestUtils.findRenderedDOMComponentWithClass(instance, 'left');
@@ -86,10 +86,10 @@ describe('Carousel', function () {
     assert.equal(backButton.props.href, '#prev');
 
     instance = ReactTestUtils.renderIntoDocument(
-        <Carousel activeIndex={1} controls={true} wrap={true}>
-          <CarouselItem ref="item1">Item 1 content</CarouselItem>
-          <CarouselItem ref="item2">Item 2 content</CarouselItem>
-        </Carousel>
+      <Carousel activeIndex={1} controls={true} wrap={true}>
+        <CarouselItem ref="item1">Item 1 content</CarouselItem>
+        <CarouselItem ref="item2">Item 2 content</CarouselItem>
+      </Carousel>
     );
 
     let nextButton = ReactTestUtils.findRenderedDOMComponentWithClass(instance, 'right');
@@ -100,10 +100,10 @@ describe('Carousel', function () {
 
   it('Should not show the prev button on the first image if wrap is false', function () {
     let instance = ReactTestUtils.renderIntoDocument(
-        <Carousel activeIndex={0} controls={true} wrap={false}>
-          <CarouselItem ref="item1">Item 1 content</CarouselItem>
-          <CarouselItem ref="item2">Item 2 content</CarouselItem>
-        </Carousel>
+      <Carousel activeIndex={0} controls={true} wrap={false}>
+        <CarouselItem ref="item1">Item 1 content</CarouselItem>
+        <CarouselItem ref="item2">Item 2 content</CarouselItem>
+      </Carousel>
     );
 
     let backButtons = ReactTestUtils.scryRenderedDOMComponentsWithClass(instance, 'left');
@@ -115,13 +115,13 @@ describe('Carousel', function () {
 
   it('Should allow user to specify a previous and next icon', function () {
     let instance = ReactTestUtils.renderIntoDocument(
-        <Carousel activeIndex={1} controls={true} wrap={false}
-                  prevIcon={<span className='ficon ficon-left'/>}
-                  nextIcon={<span className='ficon ficon-right'/>}>
-          <CarouselItem ref="item1">Item 1 content</CarouselItem>
-          <CarouselItem ref="item2">Item 2 content</CarouselItem>
-          <CarouselItem ref="item3">Item 3 content</CarouselItem>
-        </Carousel>
+      <Carousel activeIndex={1} controls={true} wrap={false}
+        prevIcon={<span className='ficon ficon-left'/>}
+        nextIcon={<span className='ficon ficon-right'/>}>
+        <CarouselItem ref="item1">Item 1 content</CarouselItem>
+        <CarouselItem ref="item2">Item 2 content</CarouselItem>
+        <CarouselItem ref="item3">Item 3 content</CarouselItem>
+      </Carousel>
     );
 
     let backButtons = ReactTestUtils.scryRenderedDOMComponentsWithClass(instance, 'ficon-left');

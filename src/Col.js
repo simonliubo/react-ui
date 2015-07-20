@@ -178,9 +178,9 @@ const Col = React.createClass({
     }, this);
 
     return (
-        <ComponentClass {...this.props} className={classNames(this.props.className, classes)}>
-          {this.props.children}
-        </ComponentClass>
+      <ComponentClass {...this.props} className={classNames(this.props.className, classes)}>
+        {this.props.children}
+      </ComponentClass>
     );
   }
 });

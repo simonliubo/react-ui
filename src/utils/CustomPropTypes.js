@@ -8,7 +8,7 @@ const CustomPropTypes = {
     return function(props, propName, componentName){
       if (props[propName] === null) {
         return new Error(
-            'The prop `' + propName + '` is required to make ' + componentName + ' accessible ' +
+          'The prop `' + propName + '` is required to make ' + componentName + ' accessible ' +
             'for users using assistive technologies such as screen readers `'
         );
       }
@@ -70,7 +70,7 @@ const CustomPropTypes = {
 
 function errMsg(props, propName, componentName, msgContinuation) {
   return `Invalid prop '${propName}' of value '${props[propName]}'` +
-      ` supplied to '${componentName}'${msgContinuation}`;
+    ` supplied to '${componentName}'${msgContinuation}`;
 }
 
 /**
@@ -85,7 +85,7 @@ function createChainableTypeChecker(validate) {
     if (props[propName] == null) {
       if (isRequired) {
         return new Error(
-            `Required prop '${propName}' was not specified in '${componentName}'.`
+          `Required prop '${propName}' was not specified in '${componentName}'.`
         );
       }
     } else {
@@ -102,10 +102,10 @@ function createChainableTypeChecker(validate) {
 function createMountableChecker() {
   function validate(props, propName, componentName) {
     if (typeof props[propName] !== 'object' ||
-        typeof props[propName].render !== 'function' && props[propName].nodeType !== 1) {
+      typeof props[propName].render !== 'function' && props[propName].nodeType !== 1) {
       return new Error(
-          errMsg(props, propName, componentName,
-              ', expected a DOM element or an object that has a `render` method')
+        errMsg(props, propName, componentName,
+          ', expected a DOM element or an object that has a `render` method')
       );
     }
   }
@@ -119,7 +119,7 @@ function createKeyOfChecker(obj) {
     if (!obj.hasOwnProperty(propValue)) {
       let valuesString = JSON.stringify(Object.keys(obj));
       return new Error(
-          errMsg(props, propName, componentName, `, expected one of ${valuesString}.`)
+        errMsg(props, propName, componentName, `, expected one of ${valuesString}.`)
       );
     }
   }
@@ -129,15 +129,15 @@ function createKeyOfChecker(obj) {
 function createSinglePropFromChecker(arrOfProps) {
   function validate(props, propName, componentName) {
     const usedPropCount = arrOfProps
-        .map(listedProp => props[listedProp])
-        .reduce((acc, curr) => acc + (curr !== undefined ? 1 : 0), 0);
+      .map(listedProp => props[listedProp])
+      .reduce((acc, curr) => acc + (curr !== undefined ? 1 : 0), 0);
 
     if (usedPropCount > 1) {
       const [first, ...others] = arrOfProps;
       const message = `${others.join(', ')} and ${first}`;
       return new Error(
-          `Invalid prop '${propName}', only one of the following ` +
-          `may be provided: ${message}`
+        `Invalid prop '${propName}', only one of the following ` +
+        `may be provided: ${message}`
       );
     }
   }
@@ -171,7 +171,7 @@ function all(propTypes) {
 function createElementTypeChecker() {
   function validate(props, propName, componentName) {
     let errBeginning = errMsg(props, propName, componentName,
-        '. Expected an Element `type`');
+      '. Expected an Element `type`');
 
     if (typeof props[propName] !== 'function') {
       if (React.isValidElement(props[propName])) {
@@ -180,7 +180,7 @@ function createElementTypeChecker() {
 
       if (typeof props[propName] !== 'string') {
         return new Error(errBeginning +
-        ' such as a tag name or return value of React.createClass(...)');
+          ' such as a tag name or return value of React.createClass(...)');
       }
     }
   }

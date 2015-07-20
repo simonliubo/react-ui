@@ -10,7 +10,7 @@ const getProgressBarNode = function (wrapper) {
 describe('ProgressBar', function () {
   it('Should output a progress bar with wrapper', function () {
     let instance = ReactTestUtils.renderIntoDocument(
-        <ProgressBar min={0} max={10} now={0} />
+      <ProgressBar min={0} max={10} now={0} />
     );
 
     assert.equal(React.findDOMNode(instance).nodeName, 'DIV');
@@ -21,7 +21,7 @@ describe('ProgressBar', function () {
 
   it('Should have the default class', function () {
     let instance = ReactTestUtils.renderIntoDocument(
-        <ProgressBar min={0} max={10} now={0} bsStyle='default' />
+      <ProgressBar min={0} max={10} now={0} bsStyle='default' />
     );
 
     assert.ok(getProgressBarNode(instance).className.match(/\bprogress-bar-default\b/));
@@ -29,7 +29,7 @@ describe('ProgressBar', function () {
 
   it('Should have the primary class', function () {
     let instance = ReactTestUtils.renderIntoDocument(
-        <ProgressBar min={0} max={10} now={0} bsStyle='primary' />
+      <ProgressBar min={0} max={10} now={0} bsStyle='primary' />
     );
 
     assert.ok(getProgressBarNode(instance).className.match(/\bprogress-bar-primary\b/));
@@ -37,7 +37,7 @@ describe('ProgressBar', function () {
 
   it('Should have the success class', function () {
     let instance = ReactTestUtils.renderIntoDocument(
-        <ProgressBar min={0} max={10} now={0} bsStyle='success' />
+      <ProgressBar min={0} max={10} now={0} bsStyle='success' />
     );
 
     assert.ok(getProgressBarNode(instance).className.match(/\bprogress-bar-success\b/));
@@ -45,7 +45,7 @@ describe('ProgressBar', function () {
 
   it('Should have the warning class', function () {
     let instance = ReactTestUtils.renderIntoDocument(
-        <ProgressBar min={0} max={10} now={0} bsStyle='warning' />
+      <ProgressBar min={0} max={10} now={0} bsStyle='warning' />
     );
 
     assert.ok(getProgressBarNode(instance).className.match(/\bprogress-bar-warning\b/));
@@ -53,7 +53,7 @@ describe('ProgressBar', function () {
 
   it('Should default to min:0, max:100', function () {
     let instance = ReactTestUtils.renderIntoDocument(
-        <ProgressBar now={5} />
+      <ProgressBar now={5} />
     );
     let bar = getProgressBarNode(instance);
 
@@ -63,7 +63,7 @@ describe('ProgressBar', function () {
 
   it('Should have 0% computed width', function () {
     let instance = ReactTestUtils.renderIntoDocument(
-        <ProgressBar min={0} max={10} now={0} />
+      <ProgressBar min={0} max={10} now={0} />
     );
 
     assert.equal(getProgressBarNode(instance).style.width, '0%');
@@ -71,7 +71,7 @@ describe('ProgressBar', function () {
 
   it('Should have 10% computed width', function () {
     let instance = ReactTestUtils.renderIntoDocument(
-        <ProgressBar min={0} max={10} now={1} />
+      <ProgressBar min={0} max={10} now={1} />
     );
 
     assert.equal(getProgressBarNode(instance).style.width, '10%');
@@ -79,7 +79,7 @@ describe('ProgressBar', function () {
 
   it('Should have 100% computed width', function () {
     let instance = ReactTestUtils.renderIntoDocument(
-        <ProgressBar min={0} max={10} now={10} />
+      <ProgressBar min={0} max={10} now={10} />
     );
 
     assert.equal(getProgressBarNode(instance).style.width, '100%');
@@ -87,7 +87,7 @@ describe('ProgressBar', function () {
 
   it('Should have 50% computed width with non-zero min', function () {
     let instance = ReactTestUtils.renderIntoDocument(
-        <ProgressBar min={1} max={11} now={6} />
+      <ProgressBar min={1} max={11} now={6} />
     );
 
     assert.equal(getProgressBarNode(instance).style.width, '50%');
@@ -95,7 +95,7 @@ describe('ProgressBar', function () {
 
   it('Should not have label', function () {
     let instance = ReactTestUtils.renderIntoDocument(
-        <ProgressBar min={0} max={10} now={5} bsStyle='primary' />
+      <ProgressBar min={0} max={10} now={5} bsStyle='primary' />
     );
 
     assert.equal(React.findDOMNode(instance).innerText, '');
@@ -103,8 +103,8 @@ describe('ProgressBar', function () {
 
   it('Should have label', function () {
     let instance = ReactTestUtils.renderIntoDocument(
-        <ProgressBar min={0} max={10} now={5} bsStyle='primary'
-                     label='min:%(min)s, max:%(max)s, now:%(now)s, percent:%(percent)s, bsStyle:%(bsStyle)s' />
+      <ProgressBar min={0} max={10} now={5} bsStyle='primary'
+        label='min:%(min)s, max:%(max)s, now:%(now)s, percent:%(percent)s, bsStyle:%(bsStyle)s' />
     );
 
     assert.equal(React.findDOMNode(instance).innerText, 'min:0, max:10, now:5, percent:50, bsStyle:primary');
@@ -112,8 +112,8 @@ describe('ProgressBar', function () {
 
   it('Should have screen reader only label', function () {
     let instance = ReactTestUtils.renderIntoDocument(
-        <ProgressBar min={0} max={10} now={5} bsStyle='primary' srOnly
-                     label='min:%(min)s, max:%(max)s, now:%(now)s, percent:%(percent)s, bsStyle:%(bsStyle)s' />
+      <ProgressBar min={0} max={10} now={5} bsStyle='primary' srOnly
+        label='min:%(min)s, max:%(max)s, now:%(now)s, percent:%(percent)s, bsStyle:%(bsStyle)s' />
     );
     let srLabel = ReactTestUtils.findRenderedDOMComponentWithClass(instance, 'sr-only');
 
@@ -122,11 +122,11 @@ describe('ProgressBar', function () {
 
   it('Should have a label that is a React component', function () {
     let customLabel = (
-        <strong className="special-label">My label</strong>
+      <strong className="special-label">My label</strong>
     );
 
     let instance = ReactTestUtils.renderIntoDocument(
-        <ProgressBar min={0} max={10} now={5} bsStyle='primary' label={customLabel} />
+      <ProgressBar min={0} max={10} now={5} bsStyle='primary' label={customLabel} />
     );
 
     assert.ok(ReactTestUtils.findRenderedDOMComponentWithClass(instance, 'special-label'));
@@ -134,11 +134,11 @@ describe('ProgressBar', function () {
 
   it('Should have screen reader only label that wraps a React component', function () {
     let customLabel = (
-        <strong className="special-label">My label</strong>
+      <strong className="special-label">My label</strong>
     );
 
     let instance = ReactTestUtils.renderIntoDocument(
-        <ProgressBar min={0} max={10} now={5} bsStyle='primary' label={customLabel} srOnly />
+      <ProgressBar min={0} max={10} now={5} bsStyle='primary' label={customLabel} srOnly />
     );
 
     let srLabel = ReactTestUtils.findRenderedDOMComponentWithClass(instance, 'sr-only');
@@ -149,7 +149,7 @@ describe('ProgressBar', function () {
 
   it('Should show striped bar', function () {
     let instance = ReactTestUtils.renderIntoDocument(
-        <ProgressBar min={1} max={11} now={6} striped />
+      <ProgressBar min={1} max={11} now={6} striped />
     );
 
     assert.ok(React.findDOMNode(instance).firstChild.className.match(/\bprogress-bar-striped\b/));
@@ -157,7 +157,7 @@ describe('ProgressBar', function () {
 
   it('Should show animated striped bar', function () {
     let instance = ReactTestUtils.renderIntoDocument(
-        <ProgressBar min={1} max={11} now={6} active />
+      <ProgressBar min={1} max={11} now={6} active />
     );
 
     const barClassName = React.findDOMNode(instance).firstChild.className;
@@ -168,10 +168,10 @@ describe('ProgressBar', function () {
 
   it('Should show stacked bars', function () {
     let instance = ReactTestUtils.renderIntoDocument(
-        <ProgressBar>
-          <ProgressBar key={1} now={50} />
-          <ProgressBar key={2} now={30} />
-        </ProgressBar>
+      <ProgressBar>
+        <ProgressBar key={1} now={50} />
+        <ProgressBar key={2} now={30} />
+      </ProgressBar>
     );
     let wrapper = React.findDOMNode(instance);
     let bar1 = wrapper.firstChild;
@@ -186,10 +186,10 @@ describe('ProgressBar', function () {
 
   it('Should render active and striped children in stacked bar too', function () {
     let instance = ReactTestUtils.renderIntoDocument(
-        <ProgressBar>
-          <ProgressBar active key={1} now={50} />
-          <ProgressBar striped key={2} now={30} />
-        </ProgressBar>
+      <ProgressBar>
+        <ProgressBar active key={1} now={50} />
+        <ProgressBar striped key={2} now={30} />
+      </ProgressBar>
     );
     let wrapper = React.findDOMNode(instance);
     let bar1 = wrapper.firstChild;
@@ -208,11 +208,11 @@ describe('ProgressBar', function () {
 
   it('allows only ProgressBar in children', function () {
     ReactTestUtils.renderIntoDocument(
-        <ProgressBar>
-          <ProgressBar key={1} />
-          <div />
-          <ProgressBar key={2} />
-        </ProgressBar>
+      <ProgressBar>
+        <ProgressBar key={1} />
+        <div />
+        <ProgressBar key={2} />
+      </ProgressBar>
     );
 
     shouldWarn('Failed propType');

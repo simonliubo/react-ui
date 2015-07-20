@@ -41,7 +41,7 @@ const TabbedArea = React.createClass({
 
   getInitialState() {
     let defaultActiveKey = this.props.defaultActiveKey != null ?
-        this.props.defaultActiveKey : getDefaultActiveKeyFromChildren(this.props.children);
+      this.props.defaultActiveKey : getDefaultActiveKeyFromChildren(this.props.children);
 
     return {
       activeKey: defaultActiveKey,
@@ -67,25 +67,25 @@ const TabbedArea = React.createClass({
     let { id, ...props } = this.props;
 
     let activeKey =
-        this.props.activeKey != null ? this.props.activeKey : this.state.activeKey;
+      this.props.activeKey != null ? this.props.activeKey : this.state.activeKey;
 
     function renderTabIfSet(child) {
       return child.props.tab != null ? this.renderTab(child) : null;
     }
 
     let nav = (
-        <Nav {...props} activeKey={activeKey} onSelect={this.handleSelect} ref="tabs">
-          {ValidComponentChildren.map(this.props.children, renderTabIfSet, this)}
-        </Nav>
+      <Nav {...props} activeKey={activeKey} onSelect={this.handleSelect} ref="tabs">
+        {ValidComponentChildren.map(this.props.children, renderTabIfSet, this)}
+      </Nav>
     );
 
     return (
-        <div>
-          {nav}
-          <div id={id} className="tab-content" ref="panes">
-            {ValidComponentChildren.map(this.props.children, this.renderPane)}
-          </div>
+      <div>
+        {nav}
+        <div id={id} className="tab-content" ref="panes">
+          {ValidComponentChildren.map(this.props.children, this.renderPane)}
         </div>
+      </div>
     );
   },
 
@@ -97,7 +97,7 @@ const TabbedArea = React.createClass({
     let activeKey = this.getActiveKey();
 
     let active = (child.props.eventKey === activeKey &&
-    (this.state.previousActiveKey == null || !this.props.animation));
+            (this.state.previousActiveKey == null || !this.props.animation));
 
     return cloneElement(
         child,
@@ -108,24 +108,24 @@ const TabbedArea = React.createClass({
           key: child.key ? child.key : index,
           animation: this.props.animation,
           onAnimateOutEnd: (this.state.previousActiveKey != null &&
-          child.props.eventKey === this.state.previousActiveKey) ? this.handlePaneAnimateOutEnd : null
+            child.props.eventKey === this.state.previousActiveKey) ? this.handlePaneAnimateOutEnd : null
         }
-    );
+      );
   },
 
   renderTab(child) {
     let {eventKey, className, tab, disabled } = child.props;
 
     return (
-        <NavItem
-            linkId={tabId(this.props, child)}
-            ref={'tab' + eventKey}
-            aria-controls={panelId(this.props, child)}
-            eventKey={eventKey}
-            className={className}
-            disabled={disabled}>
-          {tab}
-        </NavItem>
+      <NavItem
+        linkId={tabId(this.props, child)}
+        ref={'tab' + eventKey}
+        aria-controls={panelId(this.props, child)}
+        eventKey={eventKey}
+        className={className}
+        disabled={disabled}>
+        {tab}
+      </NavItem>
     );
   },
 

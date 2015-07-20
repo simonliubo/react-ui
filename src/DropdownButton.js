@@ -1,3 +1,6 @@
+/* eslint react/prop-types: [2, {ignore: "bsSize"}] */
+/* BootstrapMixin contains `bsSize` type validation */
+
 import React, { cloneElement } from 'react';
 import classNames from 'classnames';
 
@@ -29,31 +32,31 @@ const DropdownButton = React.createClass({
 
   render() {
     let renderMethod = this.props.navItem ?
-        'renderNavItem' : 'renderButtonGroup';
+      'renderNavItem' : 'renderButtonGroup';
 
     let caret = this.props.noCaret ?
         null : (<span className="caret" />);
 
     return this[renderMethod]([
       <Button
-          {...this.props}
-          ref="dropdownButton"
-          className={classNames('dropdown-toggle', this.props.buttonClassName)}
-          onClick={createChainedFunction(this.props.onClick, this.handleDropdownClick)}
-          key={0}
-          navDropdown={this.props.navItem}
-          navItem={null}
-          title={null}
-          pullRight={null}
-          dropup={null}>
+        {...this.props}
+        ref="dropdownButton"
+        className={classNames('dropdown-toggle', this.props.buttonClassName)}
+        onClick={createChainedFunction(this.props.onClick, this.handleDropdownClick)}
+        key={0}
+        navDropdown={this.props.navItem}
+        navItem={null}
+        title={null}
+        pullRight={null}
+        dropup={null}>
         {this.props.title}{' '}
         {caret}
       </Button>,
       <DropdownMenu
-          ref="menu"
-          aria-labelledby={this.props.id}
-          pullRight={this.props.pullRight}
-          key={1}>
+        ref="menu"
+        aria-labelledby={this.props.id}
+        pullRight={this.props.pullRight}
+        key={1}>
         {ValidComponentChildren.map(this.props.children, this.renderMenuItem)}
       </DropdownMenu>
     ]);
@@ -61,30 +64,30 @@ const DropdownButton = React.createClass({
 
   renderButtonGroup(children) {
     let groupClasses = {
-      'open': this.state.open,
-      'dropup': this.props.dropup
-    };
+        'open': this.state.open,
+        'dropup': this.props.dropup
+      };
 
     return (
-        <ButtonGroup
-            bsSize={this.props.bsSize}
-            className={classNames(this.props.className, groupClasses)}>
-          {children}
-        </ButtonGroup>
+      <ButtonGroup
+        bsSize={this.props.bsSize}
+        className={classNames(this.props.className, groupClasses)}>
+        {children}
+      </ButtonGroup>
     );
   },
 
   renderNavItem(children) {
     let classes = {
-      'dropdown': true,
-      'open': this.state.open,
-      'dropup': this.props.dropup
-    };
+        'dropdown': true,
+        'open': this.state.open,
+        'dropup': this.props.dropup
+      };
 
     return (
-        <li className={classNames(this.props.className, classes)}>
-          {children}
-        </li>
+      <li className={classNames(this.props.className, classes)}>
+        {children}
+      </li>
     );
   },
 
@@ -93,15 +96,15 @@ const DropdownButton = React.createClass({
     // component or it's child, this allows a user not to pass an onSelect
     // handler and have the browser preform the default action.
     let handleOptionSelect = this.props.onSelect || child.props.onSelect ?
-        this.handleOptionSelect : null;
+      this.handleOptionSelect : null;
 
     return cloneElement(
-        child,
-        {
-          // Capture onSelect events
-          onSelect: createChainedFunction(child.props.onSelect, handleOptionSelect),
-          key: child.key ? child.key : index
-        }
+      child,
+      {
+        // Capture onSelect events
+        onSelect: createChainedFunction(child.props.onSelect, handleOptionSelect),
+        key: child.key ? child.key : index
+      }
     );
   },
 

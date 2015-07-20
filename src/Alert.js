@@ -21,13 +21,13 @@ const Alert = React.createClass({
 
   renderDismissButton() {
     return (
-        <button
-            type="button"
-            className="close"
-            aria-label={this.props.closeLabel}
-            onClick={this.props.onDismiss}>
-          <span aria-hidden="true">&times;</span>
-        </button>
+      <button
+        type="button"
+        className="close"
+        aria-label={this.props.closeLabel}
+        onClick={this.props.onDismiss}>
+        <span aria-hidden="true">&times;</span>
+      </button>
     );
   },
 
@@ -38,10 +38,10 @@ const Alert = React.createClass({
     classes['alert-dismissable'] = isDismissable;
 
     return (
-        <div {...this.props} role='alert' className={classNames(this.props.className, classes)}>
-          {isDismissable ? this.renderDismissButton() : null}
-          {this.props.children}
-        </div>
+      <div {...this.props} role='alert' className={classNames(this.props.className, classes)}>
+        {isDismissable ? this.renderDismissButton() : null}
+        {this.props.children}
+      </div>
     );
   },
 

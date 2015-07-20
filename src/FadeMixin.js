@@ -1,5 +1,6 @@
 import React from 'react';
 import domUtils from './utils/domUtils';
+import deprecationWarning from './utils/deprecationWarning';
 
 // TODO: listen for onTransitionEnd to remove el
 function getElementsAndSelf (root, classes){
@@ -16,7 +17,16 @@ function getElementsAndSelf (root, classes){
   return els;
 }
 
+let warned = false;
+
 export default {
+  componentWillMount(){
+    if ( !warned ){
+      deprecationWarning('FadeMixin', 'Fade Component');
+      warned = true;
+    }
+  },
+
   _fadeIn() {
     let els;
 
@@ -59,7 +69,7 @@ export default {
   componentWillUnmount() {
     let els = getElementsAndSelf(React.findDOMNode(this), ['fade']);
     let container = (this.props.container && React.findDOMNode(this.props.container)) ||
-        domUtils.ownerDocument(this).body;
+          domUtils.ownerDocument(this).body;
 
     if (els.length) {
       this._fadeOutEl = document.createElement('div');

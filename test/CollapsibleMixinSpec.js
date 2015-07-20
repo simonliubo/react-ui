@@ -12,7 +12,7 @@ describe('CollapsibleMixin', function () {
       mixins: [CollapsibleMixin],
 
       getCollapsibleDOMNode(){
-        return this.refs.panel.getDOMNode();
+        return React.findDOMNode(this.refs.panel);
       },
 
       getCollapsibleDimensionValue(){
@@ -30,6 +30,12 @@ describe('CollapsibleMixin', function () {
         );
       }
     });
+  });
+
+  afterEach(()=> {
+    if (console.warn.calledWithMatch('CollapsibleMixin is deprecated')){
+      console.warn.reset();
+    }
   });
 
   describe('getInitialState', function(){

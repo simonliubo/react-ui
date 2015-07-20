@@ -1,5 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
+import SafeAnchor from './SafeAnchor';
 
 const MenuItem = React.createClass({
   propTypes: {
@@ -10,17 +11,21 @@ const MenuItem = React.createClass({
     target:    React.PropTypes.string,
     onSelect:  React.PropTypes.func,
     eventKey:  React.PropTypes.any,
-    active:    React.PropTypes.bool
+    active:    React.PropTypes.bool,
+    disabled:  React.PropTypes.bool
   },
 
   getDefaultProps() {
     return {
-      href: '#',
       active: false
     };
   },
 
   handleClick(e) {
+    if (this.props.disabled) {
+      e.preventDefault();
+      return;
+    }
     if (this.props.onSelect) {
       e.preventDefault();
       this.props.onSelect(this.props.eventKey, this.props.href, this.props.target);
@@ -29,9 +34,9 @@ const MenuItem = React.createClass({
 
   renderAnchor() {
     return (
-      <a onClick={this.handleClick} href={this.props.href} target={this.props.target} title={this.props.title} tabIndex="-1">
+      <SafeAnchor onClick={this.handleClick} href={this.props.href} target={this.props.target} title={this.props.title} tabIndex="-1">
         {this.props.children}
-      </a>
+      </SafeAnchor>
     );
   },
 
@@ -39,7 +44,8 @@ const MenuItem = React.createClass({
     let classes = {
         'dropdown-header': this.props.header,
         'divider': this.props.divider,
-        'active': this.props.active
+        'active': this.props.active,
+        'disabled': this.props.disabled
       };
 
     let children = null;

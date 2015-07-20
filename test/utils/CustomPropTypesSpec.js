@@ -146,7 +146,7 @@ describe('CustomPropTypes', function() {
 
       validators.forEach(x => {
         x.should.have.been.calledOnce
-            .and.calledWith(props, propName, componentName);
+          .and.calledWith(props, propName, componentName);
       });
     });
 
@@ -159,10 +159,10 @@ describe('CustomPropTypes', function() {
       expect(result).to.equal(err);
 
       validators[0].should.have.been.calledOnce
-          .and.calledWith(props, propName, componentName);
+        .and.calledWith(props, propName, componentName);
 
       validators[1].should.have.been.calledOnce
-          .and.calledWith(props, propName, componentName);
+        .and.calledWith(props, propName, componentName);
 
       validators[2].should.not.have.been.called;
     });

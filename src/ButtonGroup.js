@@ -37,11 +37,11 @@ const ButtonGroup = React.createClass({
     classes['btn-block'] = this.props.block;
 
     return (
-        <div
-            {...this.props}
-            className={classNames(this.props.className, classes)}>
-          {this.props.children}
-        </div>
+      <div
+        {...this.props}
+        className={classNames(this.props.className, classes)}>
+        {this.props.children}
+      </div>
     );
   }
 });

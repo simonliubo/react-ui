@@ -5,27 +5,27 @@ import NavItem from '../src/NavItem';
 describe('NavItem', function () {
   it('Should add active class', function () {
     let instance = ReactTestUtils.renderIntoDocument(
-        <NavItem active={true}>
-          Item content
-        </NavItem>
+      <NavItem active={true}>
+        Item content
+      </NavItem>
     );
     assert.ok(ReactTestUtils.findRenderedDOMComponentWithClass(instance, 'active'));
   });
 
   it('Should add disabled class', function () {
     let instance = ReactTestUtils.renderIntoDocument(
-        <NavItem disabled={true}>
-          Item content
-        </NavItem>
+      <NavItem disabled={true}>
+        Item content
+      </NavItem>
     );
     assert.ok(ReactTestUtils.findRenderedDOMComponentWithClass(instance, 'disabled'));
   });
 
   it('Should add DOM properties', function () {
     let instance = ReactTestUtils.renderIntoDocument(
-        <NavItem href="/some/unique-thing/" title="content">
-          Item content
-        </NavItem>
+      <NavItem href="/some/unique-thing/" title="content">
+        Item content
+      </NavItem>
     );
     let linkElement = React.findDOMNode(ReactTestUtils.findRenderedDOMComponentWithTag(instance, 'a'));
     assert.ok(linkElement.href.indexOf('/some/unique-thing/') >= 0);
@@ -34,9 +34,9 @@ describe('NavItem', function () {
 
   it('Should not add anchor properties to li', function () {
     let instance = ReactTestUtils.renderIntoDocument(
-        <NavItem href='/hi' title='boom!'>
-          Item content
-        </NavItem>
+      <NavItem href='/hi' title='boom!'>
+        Item content
+      </NavItem>
     );
 
     assert.ok(!React.findDOMNode(instance).hasAttribute('href'));
@@ -49,9 +49,9 @@ describe('NavItem', function () {
       done();
     }
     let instance = ReactTestUtils.renderIntoDocument(
-        <NavItem eventKey='2' onSelect={handleSelect}>
-          <span>Item content</span>
-        </NavItem>
+      <NavItem eventKey='2' onSelect={handleSelect}>
+        <span>Item content</span>
+      </NavItem>
     );
     ReactTestUtils.Simulate.click(ReactTestUtils.findRenderedDOMComponentWithTag(instance, 'span'));
   });
@@ -61,17 +61,17 @@ describe('NavItem', function () {
       throw new Error('onSelect should not be called');
     }
     let instance = ReactTestUtils.renderIntoDocument(
-        <NavItem disabled={true} onSelect={handleSelect}>
-          <span>Item content</span>
-        </NavItem>
+      <NavItem disabled={true} onSelect={handleSelect}>
+        <span>Item content</span>
+      </NavItem>
     );
     ReactTestUtils.Simulate.click(ReactTestUtils.findRenderedDOMComponentWithTag(instance, 'span'));
   });
 
   it('Should set target attribute on anchor', function () {
     let instance = ReactTestUtils.renderIntoDocument(
-        <NavItem href="/some/unique-thing/" target="_blank">Item content</NavItem>
-    );
+          <NavItem href="/some/unique-thing/" target="_blank">Item content</NavItem>
+        );
     let linkElement = React.findDOMNode(ReactTestUtils.findRenderedDOMComponentWithTag(instance, 'a'));
     assert.equal(linkElement.target, '_blank');
   });
@@ -82,17 +82,17 @@ describe('NavItem', function () {
       done();
     }
     let instance = ReactTestUtils.renderIntoDocument(
-        <NavItem onSelect={handleSelect} target="_blank">
-          <span>Item content</span>
-        </NavItem>
+      <NavItem onSelect={handleSelect} target="_blank">
+        <span>Item content</span>
+      </NavItem>
     );
     ReactTestUtils.Simulate.click(ReactTestUtils.findRenderedDOMComponentWithTag(instance, 'span'));
   });
 
   it('Should set role="button" when href=="#"', function () {
     let instance = ReactTestUtils.renderIntoDocument(
-        <NavItem href="#" target="_blank">Item content</NavItem>
-    );
+          <NavItem href="#" target="_blank">Item content</NavItem>
+        );
 
     let linkElement = React.findDOMNode(ReactTestUtils.findRenderedDOMComponentWithTag(instance, 'a'));
     assert(linkElement.outerHTML.match('role="button"'), true);
@@ -100,8 +100,8 @@ describe('NavItem', function () {
 
   it('Should not set role when href!="#"', function () {
     let instance = ReactTestUtils.renderIntoDocument(
-        <NavItem href="/path/to/stuff" target="_blank">Item content</NavItem>
-    );
+          <NavItem href="/path/to/stuff" target="_blank">Item content</NavItem>
+        );
 
     let linkElement = React.findDOMNode(ReactTestUtils.findRenderedDOMComponentWithTag(instance, 'a'));
     assert.equal(linkElement.outerHTML.match('role="button"'), null);
@@ -112,7 +112,7 @@ describe('NavItem', function () {
     it('Should pass aria-controls to the link', function () {
       let instance = ReactTestUtils.renderIntoDocument(
           <NavItem href="/path/to/stuff" target="_blank" aria-controls='hi'>Item content</NavItem>
-      );
+        );
 
       let linkElement = React.findDOMNode(ReactTestUtils.findRenderedDOMComponentWithTag(instance, 'a'));
 
@@ -122,10 +122,10 @@ describe('NavItem', function () {
     it('Should add aria-selected to the link', function () {
       let instance = ReactTestUtils.renderIntoDocument(
           <NavItem active>Item content</NavItem>
-      );
+        );
 
       let linkElement = React.findDOMNode(
-          ReactTestUtils.findRenderedDOMComponentWithTag(instance, 'a'));
+        ReactTestUtils.findRenderedDOMComponentWithTag(instance, 'a'));
 
       assert.equal(linkElement.getAttribute('aria-selected'), 'true');
     });
@@ -133,10 +133,10 @@ describe('NavItem', function () {
     it('Should pass role down', function () {
       let instance = ReactTestUtils.renderIntoDocument(
           <NavItem role='tab'>Item content</NavItem>
-      );
+        );
 
       let linkElement = React.findDOMNode(
-          ReactTestUtils.findRenderedDOMComponentWithTag(instance, 'a'));
+        ReactTestUtils.findRenderedDOMComponentWithTag(instance, 'a'));
 
       assert.equal(linkElement.getAttribute('role'), 'tab');
     });
